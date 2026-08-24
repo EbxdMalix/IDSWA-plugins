@@ -22,7 +22,7 @@
     "repoPath": "after-hours",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/after-hours",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/after-hours-v0.2.4/after-hours.zip#sha256=ffcf2643e88bf181a3d1f75885a8f70d70d18c5080da62bdf718ef228f68534f",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/after-hours-v0.2.4/after-hours.zip#sha256=ffcf2643e88bf181a3d1f75885a8f70d70d18c5080da62bdf718ef228f68534f",
     "permissions": [
       "messages:send"
     ],
@@ -224,7 +224,7 @@
     "repoPath": "chat-flow",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/chat-flow",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/chat-flow-v1.1.5/chat-flow.zip#sha256=2f73c9850ef7b22100c9ec8630e47287cc8dcc271484d0b21884339b885d0a66",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/chat-flow-v1.1.5/chat-flow.zip#sha256=2f73c9850ef7b22100c9ec8630e47287cc8dcc271484d0b21884339b885d0a66",
     "permissions": [
       "messages:send",
       "storage:use"
@@ -404,7 +404,7 @@
     "repoPath": "chatwoot-adapter",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/chatwoot-adapter",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/chatwoot-adapter-v0.9.4/chatwoot-adapter.zip#sha256=4b6d0a61f020b44057ed20b9f4d6573ef169544faae6f57a0162454f04e4b33e",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/chatwoot-adapter-v0.9.4/chatwoot-adapter.zip#sha256=4b6d0a61f020b44057ed20b9f4d6573ef169544faae6f57a0162454f04e4b33e",
     "permissions": [
       "net:fetch",
       "conversation:send",
@@ -715,7 +715,7 @@
     "repoPath": "faq-bot",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/faq-bot",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/faq-bot-v0.2.4/faq-bot.zip#sha256=5cbafc44ea91aa89918d79c1c2280f51641dd1cd8e6b5987031a7f86b2e50bcd",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/faq-bot-v0.2.4/faq-bot.zip#sha256=5cbafc44ea91aa89918d79c1c2280f51641dd1cd8e6b5987031a7f86b2e50bcd",
     "permissions": [
       "messages:send"
     ],
@@ -892,7 +892,7 @@
     "repoPath": "group-translate",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/group-translate",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/group-translate-v1.3.4/group-translate.zip#sha256=59af210cd868cbcd649dc1b11327b2ec92faf7bbcb1ade8635dbebf365a2a97c",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/group-translate-v1.3.4/group-translate.zip#sha256=59af210cd868cbcd649dc1b11327b2ec92faf7bbcb1ade8635dbebf365a2a97c",
     "permissions": [
       "messages:send",
       "engine:read",
@@ -1176,7 +1176,7 @@
     "repoPath": "gsheets-logger",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/gsheets-logger",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/gsheets-logger-v0.3.6/gsheets-logger.zip#sha256=4e5878093e7b1e0a8a6478e06088928188e08060a8cdd484f9639784afa9833a",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/gsheets-logger-v0.3.6/gsheets-logger.zip#sha256=4e5878093e7b1e0a8a6478e06088928188e08060a8cdd484f9639784afa9833a",
     "permissions": [
       "net:fetch",
       "storage:use"
@@ -1383,7 +1383,7 @@
     "repoPath": "http-action",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/http-action",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/http-action-v0.2.5/http-action.zip#sha256=691e8ade89982afd4bf0f8e74428dd5b2c55ed3da270c8cab41dba2654cc8660",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/http-action-v0.2.5/http-action.zip#sha256=691e8ade89982afd4bf0f8e74428dd5b2c55ed3da270c8cab41dba2654cc8660",
     "permissions": [
       "net:fetch",
       "conversation:send",
@@ -1665,7 +1665,7 @@
     "repoPath": "supabase-otp-hook",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/supabase-otp-hook",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/supabase-otp-hook-v0.3.3/supabase-otp-hook.zip#sha256=ade0e7146a3edc232b9b84e582750cb6a62da3b4d90e1586a2f3e5ba759f73e1",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/supabase-otp-hook-v0.3.3/supabase-otp-hook.zip#sha256=ade0e7146a3edc232b9b84e582750cb6a62da3b4d90e1586a2f3e5ba759f73e1",
     "permissions": [
       "webhook:ingress",
       "messages:send"
@@ -1850,7 +1850,7 @@
     "repoPath": "typebot-connector",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/typebot-connector",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/typebot-connector-v0.2.5/typebot-connector.zip#sha256=1107e5dc59c1ecf6a7624b583d0f4b14259a8c41be3a6b943742af0854a9a5a0",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/typebot-connector-v0.2.5/typebot-connector.zip#sha256=1107e5dc59c1ecf6a7624b583d0f4b14259a8c41be3a6b943742af0854a9a5a0",
     "permissions": [
       "net:fetch",
       "conversation:send",
@@ -2109,7 +2109,7 @@
     "repoPath": "voice-transcription",
     "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
     "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/voice-transcription",
-    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/voice-transcription-v1.2.6/voice-transcription.zip#sha256=d6b1465ed5940026df58f47332842a66232210f58f2f1e04dd1ffaf2e72bf503",
+    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/voice-transcription-v1.2.6/voice-transcription.zip#sha256=d6b1465ed5940026df58f47332842a66232210f58f2f1e04dd1ffaf2e72bf503",
     "permissions": [
       "net:fetch",
       "messages:send",
