@@ -1,5 +1,5 @@
 import { ChatGateway } from './core/ports';
-import type { PluginMessagingCapability, PluginEngineReadCapability } from '../types/openwa';
+import type { PluginMessagingCapability, PluginEngineReadCapability } from '../types/idswa';
 
 /**
  * ChatGateway backed by the Tier-2 plugin capability surface: writes go through

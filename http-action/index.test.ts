@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import HttpAction, { handleMessage, type HandleDeps } from './index.ts';
 import { readConfig } from './config.ts';
 import { hasSeen, type StorageLike } from './reliability.ts';
-import type { IncomingMessage, HookHandler } from '../types/openwa';
+import type { IncomingMessage, HookHandler } from '../types/idswa';
 
 function cfgWith(over: Record<string, unknown> = {}) {
   return readConfig({

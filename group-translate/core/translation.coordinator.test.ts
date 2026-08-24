@@ -229,7 +229,7 @@ describe('TranslationCoordinator', () => {
     assert.equal(saved.at(-1)?.active ?? false, false);
   });
 
-  // Regression, reproduced live on an OpenWA 0.12.1 host: WhatsApp delivered the author as
+  // Regression, reproduced live on an IDSWA 0.12.1 host: WhatsApp delivered the author as
   // `148004841455867@lid` while getGroupInfo listed that same person as `6281770008896@c.us`. The two
   // user numbers are unrelated, so a promoted admin was refused `/tr on` and the group had no working
   // administrator at all — its owner was the bot's own number, whose messages never reach this code.

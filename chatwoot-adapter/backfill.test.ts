@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { backfillHistory, backfillAllChats } from './backfill.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
 import type { InboundDeps } from './relay.ts';
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 
 // Capture what relayMessage posts by observing the client the shared relay calls (text path only here;
 // media rendering is covered by the inbound tests). `failOn` makes postText throw for a matching body.

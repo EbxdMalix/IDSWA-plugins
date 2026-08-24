@@ -1,4 +1,4 @@
-import type { ChatSummary, IncomingMessage } from '../types/openwa';
+import type { ChatSummary, IncomingMessage } from '../types/idswa';
 import { relayMessage, ensureConversation, resolvePhone, type InboundDeps } from './relay.ts';
 
 // Media is inlined only for a window small enough to plausibly fit the host's 30 s per-capability budget.

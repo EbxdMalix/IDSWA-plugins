@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.7.0-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fgroup-translate.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=group-translate)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.7.0-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fgroup-translate.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=group-translate)
 
 ## Details
 
@@ -17,12 +17,12 @@
 | **Version** | 1.3.5 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.7.0 (tested 0.23.0) |
-| **Keywords** | translation, libretranslate, i18n, groups, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/group-translate](https://github.com/rmyndharis/OpenWA-plugins/tree/main/group-translate) |
+| **Requires IDSWA** | ≥ 0.7.0 (tested 0.23.0) |
+| **Keywords** | translation, libretranslate, i18n, groups, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/group-translate](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/group-translate) |
 <!-- END DETAILS -->
 
 ## Features
@@ -63,12 +63,12 @@ Default prefix `/tr` (configurable). Read-only commands are open; the rest are a
    A plain-http backend on a non-loopback host (e.g. `http://libretranslate:5000` inside a Docker
    network) is the one case still outside that: add its `host:port` to the manifest `net.allow` and
    repackage, or put it behind https.
-2. **Allow the address on the OpenWA host if it is loopback or private.** The gateway's SSRF guard
-   blocks those by default, so set the environment variable **`SSRF_ALLOWED_HOSTS`** on the OpenWA host
+2. **Allow the address on the IDSWA host if it is loopback or private.** The gateway's SSRF guard
+   blocks those by default, so set the environment variable **`SSRF_ALLOWED_HOSTS`** on the IDSWA host
    itself — not in this plugin's config — e.g. `SSRF_ALLOWED_HOSTS=localhost,127.0.0.1`. The default
    `libretranslateUrl` *is* a loopback address, so out of the box the plugin cannot reach its backend
    until this is done (see [Security](#security)).
-3. Have OpenWA **≥ 0.7.0** running with a logged-in WhatsApp session for the group(s) you want to translate.
+3. Have IDSWA **≥ 0.7.0** running with a logged-in WhatsApp session for the group(s) you want to translate.
 4. Install and enable the plugin (see [Install](#install)), then have a group admin run `/tr on`.
    Enabling the plugin is silent: it says nothing in any group until someone addresses it with a
    `/tr` command. It never translates until an admin has run `/tr on` in that specific group, and it
@@ -81,19 +81,19 @@ Default prefix `/tr` (configurable). Read-only commands are open; the rest are a
 # Build from source (released .zip files are on the Releases page):
 node package.mjs group-translate    # produces group-translate.zip at the repo root
 
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" -F "file=@group-translate.zip"
 
-curl -X PUT "https://your-openwa-host/api/plugins/group-translate/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/group-translate/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" -H "Content-Type: application/json" \
   -d '{ "config": { "libretranslateUrl": "http://libretranslate:7001", "timeoutMs": 4000 } }'
 
-curl -X POST "https://your-openwa-host/api/plugins/group-translate/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/group-translate/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
 Then, in the group, an admin runs `/tr on`. Or install the packaged `.zip` from
-[Releases](https://github.com/rmyndharis/OpenWA-plugins/releases) via the dashboard **Plugins → Install**.
+[Releases](https://github.com/EbxdMalix/IDSWA-plugins/releases) via the dashboard **Plugins → Install**.
 
 ## Configuration
 
@@ -110,7 +110,7 @@ Then, in the group, an admin runs `/tr on`. Or install the packaged `.zip` from
 
 ## Compatibility
 
-Targets OpenWA **≥ 0.7.0** — outbound HTTP uses the v0.7 `ctx.net.fetch` capability. Declares
+Targets IDSWA **≥ 0.7.0** — outbound HTTP uses the v0.7 `ctx.net.fetch` capability. Declares
 `messages:send`, `engine:read` (for admin checks), `net:fetch`, and `storage:use` (each group's
 settings and learned participant languages).
 
@@ -162,4 +162,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](../LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](../LICENSE) © malikebad & IDSWA Contributors.

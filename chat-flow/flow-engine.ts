@@ -1,4 +1,4 @@
-import type { PluginContext } from '../types/openwa';
+import type { PluginContext } from '../types/idswa';
 
 export interface FlowNode {
   text: string;

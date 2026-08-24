@@ -1,9 +1,9 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import { shouldRelayOwn } from './filters.ts';
 import { relayMessage, ensureConversation, type InboundDeps } from './relay.ts';
 
 // WhatsApp → Chatwoot for the account's OWN outbound sends — messages composed on a linked phone / the
-// WhatsApp mobile app / the OpenWA REST API — so the Chatwoot thread mirrors the full WhatsApp
+// WhatsApp mobile app / the IDSWA REST API — so the Chatwoot thread mirrors the full WhatsApp
 // conversation (#615). Posts 'outgoing' into a conversation the INBOUND path already mapped.
 //
 // Relay-into-existing-only, never create: an own send whose chat isn't mapped yet is dropped. Creating a

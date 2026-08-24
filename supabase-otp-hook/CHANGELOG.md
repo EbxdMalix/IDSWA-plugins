@@ -11,7 +11,7 @@ to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.3.3] - 2026-08-19
 
@@ -21,13 +21,13 @@ to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.3.2] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.3.1] — 2026-08-15
 
@@ -54,7 +54,7 @@ to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -93,7 +93,7 @@ to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Resolve the phone-derived `<digits>@c.us` chat id through `ctx.engine.canonicalChatId` (OpenWA
+- Resolve the phone-derived `<digits>@c.us` chat id through `ctx.engine.canonicalChatId` (IDSWA
   0.8.7+, new `engine:read` permission) before sending, so OTPs still land in the right chat for
   contacts keyed by a `@lid` privacy id. Best-effort: on older hosts or a resolution failure the
   phone JID is used unchanged.
@@ -108,7 +108,7 @@ to [Semantic Versioning](https://semver.org/).
   "standard-webhooks"`, and the host verifies `webhook-id` / `webhook-timestamp` / `webhook-signature`
   (base64 HMAC-SHA256 over `${webhook-id}.${webhook-timestamp}.${rawBody}`, constant-time, 5-min replay
   window) against the instance secret before the plugin runs. This logic originated in the plugin's
-  `verify.ts` and was ported into the OpenWA server (`ingress-signature.ts`, `verifyStandardWebhooks`),
+  `verify.ts` and was ported into the IDSWA server (`ingress-signature.ts`, `verifyStandardWebhooks`),
   so the plugin no longer ships its own copy.
 - Synchronous feedback via the host `response` contract: a `session-alive` preflight returns **503**
   on a dead WhatsApp session and a declared **200 `application/json`** ack on success; a bad signature

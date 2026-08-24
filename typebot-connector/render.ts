@@ -7,7 +7,7 @@ export function renderResponse(resp: NormalizedResponse): OutgoingPart[] {
   for (const b of resp.bubbles) {
     if (b.kind === 'text') parts.push({ type: 'text', text: mdToWhatsApp(b.markdown) });
     else if (b.kind === 'link') parts.push({ type: 'text', text: b.url });
-    // image/video/audio → native media (OpenWA ≥0.8.2 wires conversation.send media by URL).
+    // image/video/audio → native media (IDSWA ≥0.8.2 wires conversation.send media by URL).
     else parts.push({ type: b.kind, mediaUrl: b.url });
   }
   if (resp.input) {

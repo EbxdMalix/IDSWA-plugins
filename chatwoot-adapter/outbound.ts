@@ -4,7 +4,7 @@ import type {
   PluginHandoverCapability,
   PluginEngineReadCapability,
   HandoverState,
-} from '../types/openwa';
+} from '../types/idswa';
 import type { MappingStore } from './mapping-store.ts';
 import type { KeyedAsyncLock } from './chat-lock.ts';
 import { shouldRelayOutbound, type ChatwootWebhookMessage } from './filters.ts';
@@ -26,7 +26,7 @@ export interface OutboundDeps {
 //
 // The returned status is NOT what the provider sees: the host computes that from
 // `manifest.ingress[].response.ack` and reads only whether this handler resolved or threw
-// (types/openwa.d.ts:296). What the number does control is retry — resolving means "accepted, do not
+// (types/idswa.d.ts:296). What the number does control is retry — resolving means "accepted, do not
 // retry", throwing means "retry". The values below are kept because they read as intent at each exit,
 // not because a 400 reaches Chatwoot.
 export async function handleOutbound(deps: OutboundDeps, req: WebhookRequest): Promise<{ status: number }> {

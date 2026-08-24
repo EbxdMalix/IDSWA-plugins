@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHmac } from 'node:crypto';
-import type { PluginNetCapability, PluginNetRequestInit, PluginNetResponse } from '../types/openwa';
+import type { PluginNetCapability, PluginNetRequestInit, PluginNetResponse } from '../types/idswa';
 import { WebhookDelivery, TranscriptionPayload } from './webhook.delivery.ts';
 
 function res(partial: { ok?: boolean; status?: number }): PluginNetResponse {
@@ -45,19 +45,19 @@ test('POSTs the payload as JSON to the configured url', async () => {
   assert.deepEqual(JSON.parse(calls[0].init.body as string), payload);
 });
 
-test('signs the body with HMAC-SHA256 in X-OpenWA-Signature when a secret is configured', async () => {
+test('signs the body with HMAC-SHA256 in X-IDSWA-Signature when a secret is configured', async () => {
   const { net, calls } = fakeNet(res({}));
   await new WebhookDelivery({ url: 'http://hook.local/in', secret: 'shh', timeoutMs: 5000, net }).deliver(payload);
   const sentBody = calls[0].init.body as string;
   const expected = `sha256=${createHmac('sha256', 'shh').update(sentBody).digest('hex')}`;
-  assert.equal(calls[0].init.headers!['X-OpenWA-Signature'], expected);
+  assert.equal(calls[0].init.headers!['X-IDSWA-Signature'], expected);
   assert.equal(calls[0].init.headers!['authorization'], undefined); // bearer replaced by the signature
 });
 
 test('omits the signature header when no secret is configured', async () => {
   const { net, calls } = fakeNet(res({}));
   await new WebhookDelivery({ url: 'http://hook.local/in', timeoutMs: 5000, net }).deliver(payload);
-  assert.equal(calls[0].init.headers!['X-OpenWA-Signature'], undefined);
+  assert.equal(calls[0].init.headers!['X-IDSWA-Signature'], undefined);
 });
 
 test('throws on a non-ok status so the caller can log the miss', async () => {

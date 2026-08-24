@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext, IncomingMessage, HookContext, HookResult } from '../types/openwa';
+import type { IPlugin, PluginContext, IncomingMessage, HookContext, HookResult } from '../types/idswa';
 import type { TypebotConfig } from './typebot-types.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
 import { SessionStore } from './session-store.ts';

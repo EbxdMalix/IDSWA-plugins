@@ -1,5 +1,5 @@
 import { createHmac } from 'node:crypto';
-import type { PluginNetCapability } from '../types/openwa';
+import type { PluginNetCapability } from '../types/idswa';
 
 /** The out-of-band event the plugin POSTs to an integrator's URL for an inbound voice note. */
 export interface TranscriptionPayload {
@@ -24,8 +24,8 @@ export interface TranscriptDelivery {
 
 export interface WebhookDeliveryOptions {
   url: string;
-  /** Optional shared secret. When set, the body is HMAC-SHA256 signed in `X-OpenWA-Signature` (same
-   * scheme as OpenWA's core webhooks: `sha256=<hex>`), so an existing receiver verifies it identically. */
+  /** Optional shared secret. When set, the body is HMAC-SHA256 signed in `X-IDSWA-Signature` (same
+   * scheme as IDSWA's core webhooks: `sha256=<hex>`), so an existing receiver verifies it identically. */
   secret?: string;
   timeoutMs: number;
   net: PluginNetCapability;
@@ -39,7 +39,7 @@ export class WebhookDelivery implements TranscriptDelivery {
     const body = JSON.stringify(payload);
     const headers: Record<string, string> = { 'content-type': 'application/json' };
     if (this.opts.secret) {
-      headers['X-OpenWA-Signature'] = `sha256=${createHmac('sha256', this.opts.secret).update(body).digest('hex')}`;
+      headers['X-IDSWA-Signature'] = `sha256=${createHmac('sha256', this.opts.secret).update(body).digest('hex')}`;
     }
     const response = await this.opts.net.fetch(this.opts.url, {
       method: 'POST',

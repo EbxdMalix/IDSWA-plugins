@@ -12,19 +12,19 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.2.4] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.2.3] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.2.2] — 2026-08-15
 
@@ -42,7 +42,7 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -55,7 +55,7 @@ is updated to match.
 
 ### Verified
 
-- **Confirmed against a live OpenWA 0.12.1 host**, with a connected WhatsApp session, this plugin
+- **Confirmed against a live IDSWA 0.12.1 host**, with a connected WhatsApp session, this plugin
   enabled alongside four other responder plugins (including chat-flow and faq-bot) and driven by real
   messages from a second connected WhatsApp number. A message matching nothing more specific fell
   through to the other catch-all responder rather than this plugin, as expected from the 0.2.0
@@ -81,7 +81,7 @@ is updated to match.
 
 - **A failed away reply silenced the chat for the whole cooldown.** The per-chat slot is taken *before*
   the send, so a reply that then failed left nothing delivered and nothing retryable until the window
-  expired. That path is easier to hit on OpenWA 0.12, where another plugin vetoing `message:sending`
+  expired. That path is easier to hit on IDSWA 0.12, where another plugin vetoing `message:sending`
   surfaces here as a thrown error indistinguishable from a transport failure. The slot is now rewound rather than released — clearing it outright removed the only throttle, so a
   permanently blocked send turned every inbound message into another attempt. The next try lands a fixed
   backoff from the failure,
@@ -90,7 +90,7 @@ is updated to match.
   rewind only makes sense against the cooldown value it was computed from, and config is re-read per
   message — so an operator lowering `cooldownSec` in the dashboard turned the stored value into "long
   past" and handed back the un-throttled retry the backoff exists to prevent.
-- **`minOpenWAVersion` corrected from 0.6.2 to 0.7.0.** Per-session config — which the 0.1.3 fix and the
+- **`minIDSWAVersion` corrected from 0.6.2 to 0.7.0.** Per-session config — which the 0.1.3 fix and the
   README's "Per-session config: Supported" both depend on — landed in 0.7.0. On a 0.6.x host the plugin
   installed happily and then ignored every per-session override, replying with the base away message on
   every number.
@@ -124,7 +124,7 @@ is updated to match.
 
 ## [0.1.0] — 2026-06-23
 
-First release. Built against OpenWA v0.6.2.
+First release. Built against IDSWA v0.6.2.
 
 ### Added
 

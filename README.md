@@ -1,13 +1,13 @@
 <div align="center">
 
-# OpenWA Plugins
+# IDSWA Plugins
 
-**Official & community plugins for [OpenWA](https://github.com/rmyndharis/OpenWA) — the open-source WhatsApp API Gateway.**
+**Official & community plugins for [IDSWA](https://github.com/EbxdMalix/IDSWA) — the open-source WhatsApp API Gateway.**
 
 Extend your WhatsApp gateway with drop-in capabilities: log conversations to a spreadsheet, auto-reply to customers, greet new leads, and more — installed in seconds, no fork required.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Built for OpenWA](https://img.shields.io/badge/built%20for-OpenWA-25D366.svg)](https://github.com/rmyndharis/OpenWA)
+[![Built for IDSWA](https://img.shields.io/badge/built%20for-IDSWA-25D366.svg)](https://github.com/EbxdMalix/IDSWA)
 [![Plugin type](https://img.shields.io/badge/plugin%20type-extension-blue.svg)](#plugin-contract)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
@@ -17,16 +17,16 @@ Extend your WhatsApp gateway with drop-in capabilities: log conversations to a s
 
 ---
 
-> **Status:** Active — a growing catalog. This repository is the home for installable OpenWA plugins and the conventions for building them. The catalog grows as plugins reach release.
+> **Status:** Active — a growing catalog. This repository is the home for installable IDSWA plugins and the conventions for building them. The catalog grows as plugins reach release.
 
 ## Overview
 
-OpenWA ships with a small, security-first plugin runtime. A plugin is a self-contained folder — a `manifest.json` plus a compiled entry file — that reacts to WhatsApp activity through a typed **hook** system and acts through a narrow, permission-gated **capability** API. Plugins are uploaded as a `.zip`, loaded in a **disabled** state, and only run after an administrator explicitly enables them.
+IDSWA ships with a small, security-first plugin runtime. A plugin is a self-contained folder — a `manifest.json` plus a compiled entry file — that reacts to WhatsApp activity through a typed **hook** system and acts through a narrow, permission-gated **capability** API. Plugins are uploaded as a `.zip`, loaded in a **disabled** state, and only run after an administrator explicitly enables them.
 
 This repository provides:
 
-- **A curated catalog** of ready-to-install plugins, each packaged for the OpenWA dashboard.
-- **A reference authoring workflow** — vendored OpenWA types, a one-command build-and-package script, and a worked example you can copy.
+- **A curated catalog** of ready-to-install plugins, each packaged for the IDSWA dashboard.
+- **A reference authoring workflow** — vendored IDSWA types, a one-command build-and-package script, and a worked example you can copy.
 - **Accurate, code-verified documentation** of the plugin contract (the upstream design docs describe several features that are not yet implemented; everything here reflects the shipped runtime).
 
 ## Plugin catalog
@@ -36,7 +36,7 @@ This repository provides:
 | ------ | ----------- | ------- | ------ |
 | [`after-hours`](./after-hours) | Auto-replies with a configurable away/closing message to messages received outside business hours. | 0.2.5 | stable |
 | [`chat-flow`](./chat-flow) | Interactive, stateful auto-reply: a trigger word starts a greeting + numbered menu, replies traverse a configurable menu tree, and per-chat state expires after 15 minutes. | 1.1.6 | stable |
-| [`chatwoot-adapter`](./chatwoot-adapter) | Two-way sync between a WhatsApp session and a Chatwoot inbox: relays WhatsApp messages (1:1 and groups, with media) into Chatwoot as an API-channel inbox, sends agent replies back to WhatsApp, and hands a chat over to a human agent — silencing other OpenWA bots — when an agent takes it in Chatwoot. First consumer of the OpenWA Integration SDK v1; runs sandboxed in the plugin worker. | 0.9.5 | stable |
+| [`chatwoot-adapter`](./chatwoot-adapter) | Two-way sync between a WhatsApp session and a Chatwoot inbox: relays WhatsApp messages (1:1 and groups, with media) into Chatwoot as an API-channel inbox, sends agent replies back to WhatsApp, and hands a chat over to a human agent — silencing other IDSWA bots — when an agent takes it in Chatwoot. First consumer of the IDSWA Integration SDK v1; runs sandboxed in the plugin worker. | 0.9.5 | stable |
 | [`faq-bot`](./faq-bot) | Auto-replies to inbound WhatsApp messages from configurable FAQ keyword/regex rules. | 0.2.5 | stable |
 | [`group-translate`](./group-translate) | Auto-translates group messages between participants' languages via a LibreTranslate backend. Configure in-chat with /tr commands. Admin-gated; disabled until enabled. | 1.3.5 | stable |
 | [`gsheets-logger`](./gsheets-logger) | Logs WhatsApp message events to a Google Sheet via a service account. | 0.3.7 | stable |
@@ -52,7 +52,7 @@ metadata standard every plugin follows.
 
 ## Per-session config support
 
-OpenWA's `sessionScoped` plugins (the default) may carry per-session config **overrides** set via the
+IDSWA's `sessionScoped` plugins (the default) may carry per-session config **overrides** set via the
 dashboard — so two WhatsApp sessions under one plugin instance can run different settings. A plugin
 honors overrides only if it re-reads `ctx.config` inside its hook (not a cached snapshot from enable).
 The table below is the status for each plugin in this repo. See each plugin's README **Compatibility →
@@ -71,41 +71,41 @@ Per-session config** for details and caveats.
 | [`typebot-connector`](./typebot-connector) | ✅ Supported | All fields per session; flow state is per `(session, chat)`. |
 | [`voice-transcription`](./voice-transcription) | ⚠️ Supported, with caveat | Config-signature caching; multi-backend isolation needs one instance per session. |
 
-**On the roadmap:** an automatic closing-greeting plugin for new leads. Want something else? [Open an issue](https://github.com/rmyndharis/OpenWA-plugins/issues) or [contribute one](#contributing).
+**On the roadmap:** an automatic closing-greeting plugin for new leads. Want something else? [Open an issue](https://github.com/EbxdMalix/IDSWA-plugins/issues) or [contribute one](#contributing).
 
 ## Installing a plugin
 
-Plugins are managed by an **ADMIN** API key, either through the OpenWA dashboard (**Plugins** section) or directly over the REST API. Authenticate with either the `X-API-Key` header or `Authorization: Bearer <key>`.
+Plugins are managed by an **ADMIN** API key, either through the IDSWA dashboard (**Plugins** section) or directly over the REST API. Authenticate with either the `X-API-Key` header or `Authorization: Bearer <key>`.
 
-> Replace `https://your-openwa-host` with your gateway's base URL and `<ADMIN_API_KEY>` with an admin-scoped key.
+> Replace `https://your-idswa-host` with your gateway's base URL and `<ADMIN_API_KEY>` with an admin-scoped key.
 
 **1. Build the plugin package** (see [Building from source](#building-from-source)) to get `gsheets-logger.zip`, then upload it:
 
 ```bash
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" \
   -F "file=@gsheets-logger.zip"
 ```
 
-Installing from a URL instead of an upload works the same way (`POST /api/plugins/install-url` with `{"url": ...}`). On a production host (OpenWA ≥ 0.20.0, where `NODE_ENV=production`), a URL install additionally requires a `#sha256=<64 hex>` integrity pin on the URL: catalog entries already carry it, and for a hand-pasted release URL the digest is the SHA-256 printed in that plugin's GitHub Release notes (`PLUGIN_INSTALL_REQUIRE_PIN=false` opts out).
+Installing from a URL instead of an upload works the same way (`POST /api/plugins/install-url` with `{"url": ...}`). On a production host (IDSWA ≥ 0.20.0, where `NODE_ENV=production`), a URL install additionally requires a `#sha256=<64 hex>` integrity pin on the URL: catalog entries already carry it, and for a hand-pasted release URL the digest is the SHA-256 printed in that plugin's GitHub Release notes (`PLUGIN_INSTALL_REQUIRE_PIN=false` opts out).
 
 **2. Configure it** (secrets are masked on read and preserved on write):
 
 ```bash
-curl -X PUT "https://your-openwa-host/api/plugins/gsheets-logger/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/gsheets-logger/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" \
   -H "Content-Type: application/json" \
   -d '{ "config": { "spreadsheetId": "1AbC...defG", "serviceAccountJson": "{...}", "sheetTab": "Logs" } }'
 ```
 
 **3. Enable it** — a freshly installed plugin is disabled and never enables itself. Once you have
-enabled it, that decision is remembered: OpenWA ≥ 0.12 re-enables it automatically on every host
+enabled it, that decision is remembered: IDSWA ≥ 0.12 re-enables it automatically on every host
 restart. An ERROR status does not exclude it — the host replays your enable decision, not the last
 runtime status. What is not automatic is a worker that crashed mid-run: nothing respawns it until the
 next restart or an explicit re-enable.
 
 ```bash
-curl -X POST "https://your-openwa-host/api/plugins/gsheets-logger/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/gsheets-logger/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
@@ -128,7 +128,7 @@ The gateway mounts every route under a global `/api` prefix, so the paths above 
 
 ## Plugin contract
 
-Everything below is verified against the OpenWA runtime, not the aspirational design docs.
+Everything below is verified against the IDSWA runtime, not the aspirational design docs.
 
 A plugin is a directory containing:
 
@@ -167,7 +167,7 @@ my-plugin/
 The entry file must **`export default` a class** with a no-argument constructor. Every lifecycle method is optional; the loader instantiates the class and calls `onLoad` then `onEnable` when an admin enables the plugin.
 
 ```ts
-import type { IPlugin, PluginContext } from "../types/openwa";
+import type { IPlugin, PluginContext } from "../types/idswa";
 
 export default class MyPlugin implements IPlugin {
   async onEnable(ctx: PluginContext): Promise<void> {
@@ -225,7 +225,7 @@ The `PluginContext` exposes a deliberately small surface. Every capability below
 
 Also available: `ctx.config`, `ctx.pluginId`, `ctx.registerHook`.
 
-> `ctx.storage` was ungated until OpenWA moved it behind `storage:use`. A plugin that persists anything
+> `ctx.storage` was ungated until IDSWA moved it behind `storage:use`. A plugin that persists anything
 > should declare it now rather than when its host is upgraded: an older host ignores an unrecognized
 > permission, so the declaration is free, and a newer one denies the call — mid-conversation, because
 > permissions are checked at the call and not at load.
@@ -240,17 +240,17 @@ Also available: `ctx.config`, `ctx.pluginId`, `ctx.registerHook`.
 - **Ship JavaScript, not TypeScript.** The loader `require()`s `main` directly with no transpile step. Author in TS and bundle to a single `dist/index.js`.
 - **`type` must be `extension`.** Engine, storage, queue, and auth plugins are first-party built-ins and cannot be installed at runtime.
 - **Package limits:** `.zip` ≤ 5 MB compressed, ≤ 200 files, ≤ 20 MB uncompressed. Bundle your dependencies — there is no `npm install` at install time.
-- **No published SDK package.** Vendor the OpenWA types (see [`types/openwa.d.ts`](./types/openwa.d.ts)); they are the de-facto contract.
-- **Sandboxed worker.** Since OpenWA v0.6.0 each plugin runs in its own worker thread; capabilities and outbound HTTP are host-gated (`ctx.net.fetch` is SSRF-guarded; every capability is checked against the declared `permissions`). The worker still has Node APIs within its thread, so install only plugins you trust.
-- **Compatibility is unmanaged.** There is no host-version negotiation yet. Pin the OpenWA version you tested against in your plugin's README.
+- **No published SDK package.** Vendor the IDSWA types (see [`types/idswa.d.ts`](./types/idswa.d.ts)); they are the de-facto contract.
+- **Sandboxed worker.** Since IDSWA v0.6.0 each plugin runs in its own worker thread; capabilities and outbound HTTP are host-gated (`ctx.net.fetch` is SSRF-guarded; every capability is checked against the declared `permissions`). The worker still has Node APIs within its thread, so install only plugins you trust.
+- **Compatibility is unmanaged.** There is no host-version negotiation yet. Pin the IDSWA version you tested against in your plugin's README.
 
 ## Authoring a plugin
 
 1. **Scaffold** a new folder at the repo root (copy [`gsheets-logger`](./gsheets-logger) as a starting point).
 2. **Write `manifest.json`** and an `index.ts` whose default export implements `IPlugin`.
-3. **Keep host-free logic separate** from host adapters (see the example's split between pure mapping and the I/O client) so it stays unit-testable without OpenWA.
+3. **Keep host-free logic separate** from host adapters (see the example's split between pure mapping and the I/O client) so it stays unit-testable without IDSWA.
 4. **Validate config defensively** inside `onLoad`/`onEnable` — the host does not enforce your `configSchema` types, only redacts `secret` fields.
-5. **Build and package**, then install the resulting `.zip` into a local OpenWA instance to verify.
+5. **Build and package**, then install the resulting `.zip` into a local IDSWA instance to verify.
 
 ### Building from source
 
@@ -264,11 +264,11 @@ The build bundles the entry to a single CommonJS file (exposing `.default`) with
 ## Repository structure
 
 ```
-OpenWA-plugins/
+IDSWA-plugins/
 ├─ README.md
 ├─ LICENSE
 ├─ types/
-│  └─ openwa.d.ts        # vendored OpenWA plugin interfaces (the contract)
+│  └─ idswa.d.ts        # vendored IDSWA plugin interfaces (the contract)
 ├─ package.mjs           # `node package.mjs <plugin>` → bundle + zip
 └─ <plugin>/             # one folder per plugin
    ├─ manifest.json
@@ -279,7 +279,7 @@ OpenWA-plugins/
 
 ## Compatibility
 
-Each plugin declares its `minOpenWAVersion` (ranging from 0.6.x to 0.8.x in this repo — see the plugin's README Details). OpenWA does not yet hard-enforce host-version compatibility, so always test a plugin against your specific OpenWA version before enabling it in production.
+Each plugin declares its `minIDSWAVersion` (ranging from 0.6.x to 0.8.x in this repo — see the plugin's README Details). IDSWA does not yet hard-enforce host-version compatibility, so always test a plugin against your specific IDSWA version before enabling it in production.
 
 ## Contributing
 
@@ -289,24 +289,24 @@ Contributions are welcome — new plugins, fixes, and documentation.
 2. Add your plugin in its own folder following the [authoring guide](#authoring-a-plugin), including a per-plugin `README.md` with setup steps and a config reference.
 3. Include at least one runnable test for non-trivial logic.
 4. Ensure the plugin builds and packages cleanly with `node package.mjs <plugin>`.
-5. Open a pull request describing what the plugin does and the OpenWA version you tested against.
+5. Open a pull request describing what the plugin does and the IDSWA version you tested against.
 
 Please keep plugins focused, dependency-light, and least-privilege — declare only the permissions and session scope you actually need.
 
 ## Security
 
-Plugins run in a **sandboxed worker thread** (since OpenWA v0.6.0): capabilities and outbound HTTP are host-gated (`ctx.net.fetch` is SSRF-guarded; every capability is checked against the declared `permissions`). The worker still has Node APIs within its thread, so treat every plugin as trusted code:
+Plugins run in a **sandboxed worker thread** (since IDSWA v0.6.0): capabilities and outbound HTTP are host-gated (`ctx.net.fetch` is SSRF-guarded; every capability is checked against the declared `permissions`). The worker still has Node APIs within its thread, so treat every plugin as trusted code:
 
 - Only install plugins from sources you trust.
 - Review the manifest's `permissions` and `sessions` before enabling.
 - Store secrets via the dashboard's `secret`-flagged config fields, never in source.
 
-Found a security issue in a plugin here? Please report it privately via the [OpenWA security policy](https://github.com/rmyndharis/OpenWA/security) rather than opening a public issue.
+Found a security issue in a plugin here? Please report it privately via the [IDSWA security policy](https://github.com/EbxdMalix/IDSWA/security) rather than opening a public issue.
 
 ## License
 
-[MIT](LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](LICENSE) © malikebad & IDSWA Contributors.
 
 <div align="center">
-<sub>Built for <a href="https://github.com/rmyndharis/OpenWA">OpenWA</a> — the free, self-hosted WhatsApp API Gateway.</sub>
+<sub>Built for <a href="https://github.com/EbxdMalix/IDSWA">IDSWA</a> — the free, self-hosted WhatsApp API Gateway.</sub>
 </div>

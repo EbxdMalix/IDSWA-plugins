@@ -6,7 +6,7 @@ import type {
   HookResult,
   IncomingMessage,
   PluginNetResponse,
-} from "../types/openwa";
+} from "../types/idswa";
 import { TranslationPlugin } from "./index.ts";
 
 function makeStorage(seed: Record<string, unknown> = {}) {

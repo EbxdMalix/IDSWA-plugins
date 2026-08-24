@@ -135,7 +135,7 @@ test('the ingress-declaring plugins publish their route shapes', () => {
   }
 });
 
-// OpenWA ≥ 0.20.0 refuses an install from an unpinned URL in production (NODE_ENV there), fail-closed
+// IDSWA ≥ 0.20.0 refuses an install from an unpinned URL in production (NODE_ENV there), fail-closed
 // for third-party code. The dashboard hands `entry.download` to install-url verbatim, so a catalog
 // entry whose URL lost its `#sha256=` fragment ships a link that cannot be installed at all on a
 // production host. Shape only: the digest's equality with the built artifact is enforced by

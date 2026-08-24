@@ -20,7 +20,7 @@
 // - sendText failure            → fire-and-forget: the worker dispatch has a 5 s budget, so awaiting a
 //   slow send risks a 504 → retry → DUPLICATE OTP. Background it; log failures.
 
-import type { WebhookRequest, PluginMessagingCapability } from '../types/openwa';
+import type { WebhookRequest, PluginMessagingCapability } from '../types/idswa';
 
 export interface SupabaseSmsConfig {
   appName: string;

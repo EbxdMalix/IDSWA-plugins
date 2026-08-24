@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { handleInbound, type InboundDeps } from './inbound.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 
 const msg = {
   id: 'm1', from: '621@c.us', to: 'y', chatId: '621@c.us', body: 'hello', type: 'chat',

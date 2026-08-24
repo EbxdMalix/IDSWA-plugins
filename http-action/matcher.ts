@@ -1,4 +1,4 @@
-// Trigger matcher + argument parser for HTTP Action Bot. Pure (no ctx) → tests without OpenWA.
+// Trigger matcher + argument parser for HTTP Action Bot. Pure (no ctx) → tests without IDSWA.
 //
 // Picks the FIRST action (config order) whose match clause fits the message body, and parses the trailing
 // text into args. Case-insensitive by default (the toggle lives on each action's match). Args preserve the

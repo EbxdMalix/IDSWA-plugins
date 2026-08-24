@@ -12,19 +12,19 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [1.3.4] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [1.3.3] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [1.3.2] — 2026-08-15
 
@@ -43,7 +43,7 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -55,7 +55,7 @@ The version here always matches `manifest.json`'s `version`.
 
 - **Declared the `storage:use` permission.** Each group's settings — whether translation is on, the
   language learned for every participant, and any delegated controllers — are kept in plugin storage.
-  OpenWA is moving `ctx.storage` behind a permission the manifest has to declare, and a plugin that
+  IDSWA is moving `ctx.storage` behind a permission the manifest has to declare, and a plugin that
   does not name it will have those reads and writes refused once the host enforces that. The failure
   would surface mid-conversation rather than at install: the plugin would keep running and quietly
   forget every group's configuration. Declaring it now costs nothing on the hosts you are running
@@ -86,7 +86,7 @@ The version here always matches `manifest.json`'s `version`.
   meant editing the manifest and rebuilding the `.zip` — and every other value silently failed. Any
   loopback address on any port is now accepted as shipped, and any other host is accepted over https
   through the manifest's `allowConfigHosts`. A loopback or private address still needs
-  `SSRF_ALLOWED_HOSTS` on the OpenWA host; a plain-http backend on a non-loopback host still needs the
+  `SSRF_ALLOWED_HOSTS` on the IDSWA host; a plain-http backend on a non-loopback host still needs the
   manifest edit, because the host admits a config-supplied host only over https.
 
 ## [1.2.0] — 2026-08-01
@@ -111,7 +111,7 @@ is updated to match.
 
 ### Verified
 
-- **Confirmed against a live OpenWA 0.12.1 host**, with a connected WhatsApp session, driven by real
+- **Confirmed against a live IDSWA 0.12.1 host**, with a connected WhatsApp session, driven by real
   WhatsApp messages from a second connected number in a real WhatsApp group, against a real self-hosted
   LibreTranslate instance (English + Indonesian models) reachable at `http://localhost:7001` from inside
   the host container. `/tr status` reported `Translator: ok` — a live health probe of LibreTranslate
@@ -142,7 +142,7 @@ is updated to match.
 ### Fixed
 
 - **An empty translation is dropped instead of thrown away.** Whatever the backend returned was forwarded
-  straight into the send, and a backend that answers 200 with a blank translation is a real case. OpenWA
+  straight into the send, and a backend that answers 200 with a blank translation is a real case. IDSWA
   0.12 rejects an empty positional capability argument outright, so that stopped being a blank WhatsApp
   bubble and became a thrown capability error the coordinator swallowed — a translation that silently
   never arrives either way. It is now dropped deliberately, at the one place that can tell why.
@@ -224,7 +224,7 @@ is updated to match.
 
 ## [1.0.0] — 2026-06-23
 
-First release. Built against the OpenWA v0.7 plugin contract.
+First release. Built against the IDSWA v0.7 plugin contract.
 
 ### Added
 

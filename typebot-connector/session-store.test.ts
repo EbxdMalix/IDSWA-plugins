@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginStorage } from '../types/openwa';
+import type { PluginStorage } from '../types/idswa';
 import type { SessionState } from './typebot-types.ts';
 import { SessionStore } from './session-store.ts';
 

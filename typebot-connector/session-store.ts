@@ -1,4 +1,4 @@
-import type { PluginStorage } from '../types/openwa';
+import type { PluginStorage } from '../types/idswa';
 import type { SessionState } from './typebot-types.ts';
 
 // Thin per-key wrapper over ctx.storage. One document per session key; the idle-timeout and start-vs-continue

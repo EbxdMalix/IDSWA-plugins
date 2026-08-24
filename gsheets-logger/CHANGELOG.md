@@ -12,19 +12,19 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.3.6] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.3.5] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.3.4] — 2026-08-15
 
@@ -50,7 +50,7 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -62,7 +62,7 @@ The version here always matches `manifest.json`'s `version`.
 
 - **Declared the `storage:use` permission.** Rows are batched in memory and the pending batch is kept
   in plugin storage — restored when the plugin starts and written back when it stops — so a restart
-  between flushes does not lose what has not reached the sheet yet. OpenWA is moving `ctx.storage`
+  between flushes does not lose what has not reached the sheet yet. IDSWA is moving `ctx.storage`
   behind a permission the manifest has to declare, and without it that restore and that save are
   refused: the plugin would keep logging happily and lose the pending batch on every restart, which
   is exactly the failure the buffer exists to prevent. Declaring it changes nothing on the hosts you
@@ -83,7 +83,7 @@ The version here always matches `manifest.json`'s `version`.
 
 - **Every non-text send failure was logged as a text message with an empty body.** `message:failed` used
   to fire only from `sendText`, so hardcoding the `type` column to `text` and reading the body from
-  `input.text` was accurate. OpenWA 0.12 routes every sender through one shared failure path that carries
+  `input.text` was accurate. IDSWA 0.12 routes every sender through one shared failure path that carries
   the real `type` — image, video, voice, audio, document, location, contact, poll, sticker, reply, forward
   and bulk (not edit, which has no failure path of its own) — and a media send holds its caption in `caption`, not `text`. An audit sheet is only worth
   what its worst row is worth: a failed invoice photo appeared as a `text` message with nothing in it.
@@ -100,7 +100,7 @@ The version here always matches `manifest.json`'s `version`.
 - **Outbound HTTP now goes through `ctx.net.fetch`** (host-proxied, SSRF-guarded) instead of the raw
   worker `fetch`, bringing the plugin back inside the v0.7 net contract. The manifest declares
   `permissions: ["net:fetch"]` and `net.allow: ["oauth2.googleapis.com", "sheets.googleapis.com"]` —
-  the only two hosts the plugin ever calls — and `minOpenWAVersion` rises to **0.7.0** accordingly.
+  the only two hosts the plugin ever calls — and `minIDSWAVersion` rises to **0.7.0** accordingly.
 - **Documented that per-session spreadsheet routing is not supported.** The plugin holds one buffer and
   one Sheets client built from the base `*` config, so a per-session config override that points at a
   different `spreadsheetId` / `serviceAccountJson` is **not** honored — rows from every session land in
@@ -143,7 +143,7 @@ The version here always matches `manifest.json`'s `version`.
 
 ## [0.2.0] — 2026-06-22
 
-First packaged release. Built and reviewed against OpenWA v0.6.1.
+First packaged release. Built and reviewed against IDSWA v0.6.1.
 
 ### Added
 

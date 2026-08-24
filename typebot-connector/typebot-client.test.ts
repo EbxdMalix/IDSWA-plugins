@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginNetRequestInit, PluginNetResponse } from '../types/openwa';
+import type { PluginNetRequestInit, PluginNetResponse } from '../types/idswa';
 import type { TypebotConfig } from './typebot-types.ts';
 import { TypebotClient, TypebotHttpError } from './typebot-client.ts';
 

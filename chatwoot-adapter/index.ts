@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext, IncomingMessage, HookContext, HookResult, WebhookRequest } from '../types/openwa';
+import type { IPlugin, PluginContext, IncomingMessage, HookContext, HookResult, WebhookRequest } from '../types/idswa';
 import { ChatwootClient } from './chatwoot-client.ts';
 import { MappingStore, SEEN_TTL_MS, SEEN_PRUNE_INTERVAL_MS } from './mapping-store.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
@@ -143,7 +143,7 @@ export default class ChatwootAdapter implements IPlugin {
       HOOK_PRIORITY,
     );
 
-    // The account's OWN outbound sends (linked phone / WhatsApp app / OpenWA REST API) arrive on
+    // The account's OWN outbound sends (linked phone / WhatsApp app / IDSWA REST API) arrive on
     // message:sent, not message:received. Relay them as 'outgoing' so the Chatwoot thread mirrors the full
     // WhatsApp conversation (#615). The adapter's own Chatwoot-agent replies also surface here but are
     // echo-suppressed inside handleSent. Gated per-event so a live relayOwnMessages flip applies at once.

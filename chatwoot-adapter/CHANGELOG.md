@@ -10,19 +10,19 @@ All notable changes to the Chatwoot Adapter plugin are documented here. The form
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.9.4] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.9.3] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.9.2] — 2026-08-15
 
@@ -60,7 +60,7 @@ All notable changes to the Chatwoot Adapter plugin are documented here. The form
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -76,7 +76,7 @@ All notable changes to the Chatwoot Adapter plugin are documented here. The form
   conversation instead of continuing the existing one), the de-duplication buckets (without them a
   redelivered message is posted to Chatwoot twice), the retry queue (without it a message that arrives
   while Chatwoot is briefly unreachable is simply lost), and the one-shot bulk-import marker (without
-  it a re-enable re-imports history that is already there). OpenWA is moving `ctx.storage` behind a
+  it a re-enable re-imports history that is already there). IDSWA is moving `ctx.storage` behind a
   permission the manifest has to declare; without it all four are refused. Declaring it changes
   nothing on the hosts you run today — an unrecognized permission is ignored — so 0.9.1 behaves
   exactly like 0.9.0.
@@ -126,7 +126,7 @@ All notable changes to the Chatwoot Adapter plugin are documented here. The form
 
 ### Verified
 
-- **Reproduced and confirmed against a live OpenWA 0.12.1 host** (Baileys engine) and a self-hosted
+- **Reproduced and confirmed against a live IDSWA 0.12.1 host** (Baileys engine) and a self-hosted
   Chatwoot v4.16.2: an API-channel inbox previously fed by a custom bridge had contacts keyed
   `wa:<digits>`. Every inbound WhatsApp message from those chats 422'd and dead-lettered
   ("2 dead-lettered after 5 attempts"). Manually re-keying the contacts' identifiers to the JID — exactly
@@ -154,7 +154,7 @@ All notable changes to the Chatwoot Adapter plugin are documented here. The form
 
 ### Verified
 
-- **Confirmed against a live OpenWA 0.12.1 host**, with a connected WhatsApp session and a real Chatwoot
+- **Confirmed against a live IDSWA 0.12.1 host**, with a connected WhatsApp session and a real Chatwoot
   instance. A conversation the adapter had mapped was deleted in Chatwoot, and posting to it was confirmed
   rejected. The next WhatsApp message from that chat caused the adapter to drop the stale mapping and mint
   a fresh conversation, keeping the same Chatwoot contact. The message was delivered into the new
@@ -170,7 +170,7 @@ is updated to match.
 
 ### Verified
 
-- **0.7.0 confirmed working against a live OpenWA 0.12.1 host**, with a connected WhatsApp session and a
+- **0.7.0 confirmed working against a live IDSWA 0.12.1 host**, with a connected WhatsApp session and a
   real Chatwoot instance. It installed in place over the previous build with its configuration and API
   token preserved, the message hook registered at priority 20, and live inbound messages relayed to
   Chatwoot.
@@ -216,7 +216,7 @@ History-backfill reliability release, plus a registration-order fix.
 
 ## [0.6.0] — 2026-07-30
 
-Storage-behaviour release, prompted by OpenWA 0.12.0. The host now enforces a 50 MiB per-plugin storage
+Storage-behaviour release, prompted by IDSWA 0.12.0. The host now enforces a 50 MiB per-plugin storage
 quota and re-measures it on **every** write by stat-ing every one of the plugin's storage keys —
 synchronously, on the gateway's own event loop. Two long-standing designs in this adapter turned that
 into message loss and a gateway-wide stall.
@@ -257,7 +257,7 @@ into message loss and a gateway-wide stall.
 - **A storage failure while marking a message seen no longer escapes the handler.** The `markSeen` call
   sat outside the `try`, so a rejected write left the message neither relayed nor queued for retry; it
   now takes the same retry path as a failed relay.
-- **Polls relayed as an empty Chatwoot bubble.** `poll` is a message type OpenWA reports with an empty
+- **Polls relayed as an empty Chatwoot bubble.** `poll` is a message type IDSWA reports with an empty
   body, and it had no placeholder, so the post was rejected with a 422 and — the message being already
   marked seen — dropped after five retries, leaving the plugin permanently unhealthy. Polls now relay as
   `📊 Poll`, and the placeholder fallback can no longer return an empty string for any bodyless type
@@ -305,7 +305,7 @@ into message loss and a gateway-wide stall.
 - **Promoted from beta to stable.** The two-way relay has now been exercised end to end on both engines
   (whatsapp-web.js and Baileys) against a live WhatsApp account: inbound relay, agent replies with text
   and media, your own outbound messages mirrored without being re-sent, and a real history import.
-  Tested against OpenWA 0.10.5.
+  Tested against IDSWA 0.10.5.
 
   One limitation to be aware of, unchanged by this release: WhatsApp is migrating contacts to privacy
   ids (`@lid`), and a contact first seen under its privacy id creates a separate Chatwoot contact from
@@ -319,7 +319,7 @@ into message loss and a gateway-wide stall.
 
 - **Every outgoing WhatsApp message was delivered twice while the adapter was enabled.** With "Relay your
   own outbound sends" on (the default), the adapter mirrors anything you send — from the WhatsApp app, a
-  linked phone, or the OpenWA API — into the Chatwoot thread as an outgoing message. Chatwoot then
+  linked phone, or the IDSWA API — into the Chatwoot thread as an outgoing message. Chatwoot then
   announces that mirror back over the webhook, and because the adapter only ignored *incoming* Chatwoot
   posts, it treated its own mirror as a fresh agent reply and sent it to WhatsApp a second time. The
   recipient genuinely received two copies of every message. The adapter now records the Chatwoot message
@@ -351,10 +351,10 @@ into message loss and a gateway-wide stall.
 ### Fixed
 
 - **Setup guide no longer prescribes a mint path that can never verify webhooks**
-  ([OpenWA #821](https://github.com/rmyndharis/OpenWA/issues/821)). It previously told you to mint the
+  ([IDSWA #821](https://github.com/EbxdMalix/IDSWA/issues/821)). It previously told you to mint the
   instance from the dashboard and "paste the Chatwoot webhook secret" there — but the dashboard's
   instance form has no secret field and auto-generates one, which can never match Chatwoot's, so every
-  Chatwoot → OpenWA delivery failed HMAC verification with a 401 while inbound (which uses the API
+  Chatwoot → IDSWA delivery failed HMAC verification with a 401 while inbound (which uses the API
   token, not the webhook secret) kept working. Setup now mints via the REST API (the only path that
   accepts a secret), states the concrete minimum Chatwoot version (v4.12.0, the first release with
   per-webhook secrets + timestamped webhook signatures), and a new Troubleshooting section maps the 401
@@ -380,7 +380,7 @@ into message loss and a gateway-wide stall.
   Their `@lid` messages now resolve to the existing `<phone>@c.us` conversation (via the host
   `canonicalChatId` resolver + a dual lookup), mirroring the outbound fix in 0.4.0. Best-effort — it
   applies whenever the lid→phone mapping is known: after any reply to the contact, or on every inbound
-  when OpenWA's `RESOLVE_LID_TO_PHONE=true` is set (recommended to fully close the gap; it also helps the
+  when IDSWA's `RESOLVE_LID_TO_PHONE=true` is set (recommended to fully close the gap; it also helps the
   outbound path).
 
 ## [0.5.0] — 2026-07-03
@@ -400,13 +400,13 @@ into message loss and a gateway-wide stall.
 ### Added
 
 - **Relay your own outbound sends** into Chatwoot, so a conversation isn't one-sided when you reply from a
-  linked phone, the WhatsApp app, or the OpenWA API (#615). These mirror into the contact's **existing**
+  linked phone, the WhatsApp app, or the IDSWA API (#615). These mirror into the contact's **existing**
   mapped Chatwoot conversation as `outgoing` messages (a send to a chat not yet in Chatwoot is skipped —
   it appears once the contact replies, never as a duplicate conversation). Replies you send from within
   Chatwoot are recognized and never duplicated. New `relayOwnMessages` setting, **on by default**; turn it
   off to keep phone-composed messages out of the helpdesk. When the `@lid` mapping is resolvable, own
   sends to a contact WhatsApp has migrated to `@lid` land in their existing conversation instead of a
-  duplicate, via the new host `canonicalChatId` resolver. Requires OpenWA 0.8.7+.
+  duplicate, via the new host `canonicalChatId` resolver. Requires IDSWA 0.8.7+.
 
 ## [0.3.0] — 2026-07-03
 
@@ -420,7 +420,7 @@ into message loss and a gateway-wide stall.
   - **Bulk (`backfillAllOnce`)** — a one-time sweep that imports the history of every existing chat on
     setup, for mirroring a whole inbox. Sequential, best-effort, runs once per session.
   - Business-side (`fromMe`) messages post as Chatwoot `outgoing`, contact messages as `incoming`.
-  - Requires OpenWA 0.8.6+ (the `engine.getChatHistory` capability, bridged to sandboxed plugins) and the
+  - Requires IDSWA 0.8.6+ (the `engine.getChatHistory` capability, bridged to sandboxed plugins) and the
     `engine:read` permission. History that can't be fetched (e.g. the Baileys engine, which doesn't support
     it, or a chat with no fetchable history) is skipped — the bulk sweep never creates empty conversations.
 
@@ -433,7 +433,7 @@ into message loss and a gateway-wide stall.
   (`is_voice_message`, `voice.ogg`); a voice note whose blob was dropped for size posts a short
   placeholder instead of an empty bubble. Outbound audio attachments from Chatwoot are sent back to
   WhatsApp as PTT voice notes, and image/video/file attachments are relayed as their native media type —
-  previously any attachment without text was silently dropped. Requires OpenWA 0.8.3+. (#607)
+  previously any attachment without text was silently dropped. Requires IDSWA 0.8.3+. (#607)
 - **Contact names self-heal for `@lid` chats.** A chat first seen from a privacy-id (`@lid`) sender is
   seeded in Chatwoot with the bare id; once a real WhatsApp display name arrives on a later message, the
   Chatwoot contact is renamed to it. Best-effort, only when the name actually changed, and never for
@@ -471,7 +471,7 @@ Initial release — two-way WhatsApp ↔ Chatwoot sync.
 
 - **WhatsApp → Chatwoot:** relays inbound messages (1:1 and groups) into a Chatwoot API-channel inbox as `incoming` messages, including media as attachments. Contacts are keyed on the WhatsApp JID (safe across WhatsApp's `@lid` migration); a group maps to a single synthetic contact with sender-prefixed messages.
 - **Chatwoot → WhatsApp:** relays agent replies (`message_type: outgoing`, non-private) back to WhatsApp; drops the adapter's own posts, foreign inboxes, and private notes.
-- **Handover:** when a human agent is assigned in Chatwoot, other OpenWA bots stop auto-replying on that chat; automation resumes when the conversation is unassigned.
+- **Handover:** when a human agent is assigned in Chatwoot, other IDSWA bots stop auto-replying on that chat; automation resumes when the conversation is unassigned.
 - Inbound and outbound are serialized by an in-worker per-chat lock (no duplicate contacts/conversations on a cold-start burst), with idempotency on both WhatsApp and Chatwoot message ids.
 
-Requires an OpenWA host with Integration SDK v1 (webhook ingress, `ctx.mappings`, the session+chat handover gate, and `net.allowConfigHosts`), and a Chatwoot version that HMAC-signs account-level webhooks with a timestamp (see the README setup guide).
+Requires an IDSWA host with Integration SDK v1 (webhook ingress, `ctx.mappings`, the session+chat handover gate, and `net.allowConfigHosts`), and a Chatwoot version that HMAC-signs account-level webhooks with a timestamp (see the README setup guide).

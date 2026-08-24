@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginStorage, PluginMappingsCapability, IncomingMessage } from '../types/openwa';
+import type { PluginStorage, PluginMappingsCapability, IncomingMessage } from '../types/idswa';
 import { MappingStore, SEEN_SHARDS, SEEN_TTL_MS, shardOf } from './mapping-store.ts';
 
 // The store shards on `${scope}:${kind}:${id}`, so this finds a second message id that lands in the same

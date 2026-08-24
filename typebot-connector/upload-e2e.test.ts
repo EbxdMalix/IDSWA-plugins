@@ -7,7 +7,7 @@ import type {
   PluginStorage,
   PluginNetRequestInit,
   PluginNetResponse,
-} from '../types/openwa';
+} from '../types/idswa';
 import type { TypebotConfig } from './typebot-types.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
 import { SessionStore } from './session-store.ts';

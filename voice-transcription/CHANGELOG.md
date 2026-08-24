@@ -10,19 +10,19 @@ All notable changes to the Voice Note Transcription plugin are documented here. 
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [1.2.6] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [1.2.5] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [1.2.4] — 2026-08-15
 
@@ -43,7 +43,7 @@ All notable changes to the Voice Note Transcription plugin are documented here. 
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -55,7 +55,7 @@ All notable changes to the Voice Note Transcription plugin are documented here. 
 
 - **Declared the `storage:use` permission.** Two things live in plugin storage, one key each per
   WhatsApp session: the list of voice notes already transcribed, and the hourly counter behind the
-  rate cap. OpenWA is moving `ctx.storage` behind a permission the manifest has to declare, and
+  rate cap. IDSWA is moving `ctx.storage` behind a permission the manifest has to declare, and
   without it both are refused — which costs money rather than just state. The de-duplication list is
   what stops the same voice note being sent to the speech-to-text backend twice, and the counter is
   what enforces `maxPerHour`; lose them and every redelivery becomes another paid transcription with
@@ -78,7 +78,7 @@ is updated to match.
 
 ### Verified
 
-- **Confirmed against a live OpenWA 0.12.1 host**, with a connected WhatsApp session, against a real
+- **Confirmed against a live IDSWA 0.12.1 host**, with a connected WhatsApp session, against a real
   self-hosted faster-whisper server (`Systran/faster-whisper-small.en`) speaking the OpenAI-compatible
   `/v1/audio/transcriptions` API at `http://localhost:9010`, with `chatDelivery: reply`. A genuine
   Ogg/Opus WhatsApp voice note was sent from a second connected number; the plugin downloaded the media
@@ -115,7 +115,7 @@ is updated to match.
 
 ### Fixed
 
-- **Storage keys no longer grow without bound.** OpenWA 0.12.0 re-measures a plugin's storage quota on
+- **Storage keys no longer grow without bound.** IDSWA 0.12.0 re-measures a plugin's storage quota on
   every write by stat-ing every one of its keys, so keys that are written once and never deleted make
   each subsequent write more expensive — permanently. This plugin wrote one dedup key per transcribed
   voice note and one counter key per session per hour, and deleted neither. Dedup now uses a single
@@ -207,7 +207,7 @@ is updated to match.
 - Optional **in-chat delivery** (`chatDelivery`: `off` | `self` | `reply`, default `off`) for operators who
   want the transcript inside WhatsApp; `self` notes it to your own number without leaking to the sender.
   Webhook delivery is optional too — the plugin can run chat-only.
-- Webhook payloads are **HMAC-SHA256 signed** in `X-OpenWA-Signature` (same scheme as OpenWA core webhooks)
+- Webhook payloads are **HMAC-SHA256 signed** in `X-IDSWA-Signature` (same scheme as IDSWA core webhooks)
   when a delivery secret is set, so existing verification reuses the same check.
 - STT **circuit breaker**: after repeated failures the backend is skipped for a cooldown, so a degraded
   provider isn't hammered.

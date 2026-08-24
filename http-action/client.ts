@@ -1,5 +1,5 @@
 // Fixed-origin HTTP client for HTTP Action Bot. Takes the host `ctx.net.fetch` (injected, so this tests
-// without OpenWA) and a validated config; builds a safe request per action + template context and parses
+// without IDSWA) and a validated config; builds a safe request per action + template context and parses
 // the JSON response. Pure modulo the injected fetch.
 //
 // The injected fetch matches the real PluginNetCapability.fetch(url, init) — URL is the first positional

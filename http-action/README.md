@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.8.0-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fhttp-action.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=http-action)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.8.0-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fhttp-action.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=http-action)
 
 ## Details
 
@@ -17,12 +17,12 @@
 | **Version** | 0.2.6 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.8.0 (tested 0.23.0) |
-| **Keywords** | api, rest, automation, connector, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/http-action](https://github.com/rmyndharis/OpenWA-plugins/tree/main/http-action) |
+| **Requires IDSWA** | ≥ 0.8.0 (tested 0.23.0) |
+| **Keywords** | api, rest, automation, connector, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/http-action](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/http-action) |
 <!-- END DETAILS -->
 
 ## Features
@@ -68,7 +68,7 @@ passing nothing. Guard any template that must have a number, e.g. with a `notFou
 ## Setup
 
 1. Have an **HTTPS API** you want to call from WhatsApp — its origin goes in `baseUrl`.
-2. Have OpenWA **≥ 0.8.0** running with a logged-in WhatsApp session.
+2. Have IDSWA **≥ 0.8.0** running with a logged-in WhatsApp session.
 3. Install and enable the plugin (see [Install](#install)), then define your actions
    (see [Configuration](#configuration)).
 
@@ -77,18 +77,18 @@ passing nothing. Guard any template that must have a number, e.g. with a `notFou
 ```bash
 node package.mjs http-action    # produces http-action.zip at the repo root
 
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" -F "file=@http-action.zip"
 
-curl -X PUT "https://your-openwa-host/api/plugins/http-action/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/http-action/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" -H "Content-Type: application/json" \
   -d '{ "config": { "baseUrl": "https://erp.example.com", "actions": "[{\"id\":\"check-order\",\"match\":{\"type\":\"prefix\",\"value\":\"cek-order \"},\"request\":{\"method\":\"GET\",\"path\":\"/orders/{{args.0}}\"},\"replyTemplate\":\"Order {{response.orderId}}: {{response.status}}\"}]" } }'
 
-curl -X POST "https://your-openwa-host/api/plugins/http-action/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/http-action/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
-Or download the packaged `.zip` from [Releases](https://github.com/rmyndharis/OpenWA-plugins/releases)
+Or download the packaged `.zip` from [Releases](https://github.com/EbxdMalix/IDSWA-plugins/releases)
 and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
 
 ## Configuration
@@ -106,7 +106,7 @@ and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
 
 ## Compatibility
 
-Targets OpenWA **≥ 0.8.0**, the release that introduced both capabilities it relies on
+Targets IDSWA **≥ 0.8.0**, the release that introduced both capabilities it relies on
 (`net.allowConfigHosts` and `conversation:send`). Live config edits apply on the next inbound message
 (config is re-read per event).
 
@@ -144,4 +144,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](../LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](../LICENSE) © malikebad & IDSWA Contributors.

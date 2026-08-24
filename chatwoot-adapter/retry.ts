@@ -1,4 +1,4 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import type { MappingStore } from './mapping-store.ts';
 import type { KeyedAsyncLock } from './chat-lock.ts';
 

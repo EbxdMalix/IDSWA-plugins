@@ -5,10 +5,10 @@
   "type": "extension",
   "main": "dist/index.js",
   "description": "Transcribes inbound WhatsApp voice notes to text via an OpenAI-compatible speech-to-text backend (self-hosted Speaches/faster-whisper or hosted Groq/OpenAI) and delivers a `message.transcription` event to your webhook \u2014 so bots and AI can read and reply to audio. Off the message-delivery path; disabled until enabled.",
-  "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+  "author": "malikebad <ebadm7251@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/voice-transcription",
-  "repository": "https://github.com/rmyndharis/OpenWA-plugins",
+  "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/voice-transcription",
+  "repository": "https://github.com/EbxdMalix/IDSWA-plugins",
   "keywords": [
     "transcription",
     "speech-to-text",
@@ -17,11 +17,11 @@
     "voice",
     "audio",
     "whatsapp",
-    "openwa"
+    "idswa"
   ],
   "status": "beta",
-  "minOpenWAVersion": "0.7.0",
-  "testedOpenWAVersion": "0.23.0",
+  "minIDSWAVersion": "0.7.0",
+  "testedIDSWAVersion": "0.23.0",
   "provides": [
     "transcription"
   ],
@@ -56,7 +56,7 @@
         "type": "string",
         "title": "STT base URL",
         "required": true,
-        "description": "Base URL of an OpenAI-compatible /v1/audio/transcriptions server \u2014 e.g. http://localhost:8000 (Speaches/faster-whisper) or https://api.groq.com/openai. An https host you set here is allowed automatically; a localhost/127.0.0.1 target is already allowed but ALSO requires SSRF_ALLOWED_HOSTS on the OpenWA host (use a literal 127.0.0.1)."
+        "description": "Base URL of an OpenAI-compatible /v1/audio/transcriptions server \u2014 e.g. http://localhost:8000 (Speaches/faster-whisper) or https://api.groq.com/openai. An https host you set here is allowed automatically; a localhost/127.0.0.1 target is already allowed but ALSO requires SSRF_ALLOWED_HOSTS on the IDSWA host (use a literal 127.0.0.1)."
       },
       "sttApiKey": {
         "type": "string",
@@ -122,7 +122,7 @@
         "type": "string",
         "title": "Delivery secret",
         "secret": true,
-        "description": "Optional. When set, the body is HMAC-SHA256 signed in `X-OpenWA-Signature: sha256=<hex>` (same scheme as OpenWA core webhooks) so your endpoint can verify it."
+        "description": "Optional. When set, the body is HMAC-SHA256 signed in `X-IDSWA-Signature: sha256=<hex>` (same scheme as IDSWA core webhooks) so your endpoint can verify it."
       },
       "deliveryTimeoutMs": {
         "type": "number",

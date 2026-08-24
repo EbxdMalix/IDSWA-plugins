@@ -2,11 +2,11 @@
   {
     "id": "after-hours",
     "name": "After-Hours Auto-Reply",
-    "version": "0.2.5",
+    "version": "0.2.4",
     "type": "extension",
     "status": "stable",
     "description": "Auto-replies with a configurable away/closing message to messages received outside business hours.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "after-hours",
@@ -14,15 +14,15 @@
       "away",
       "auto-reply",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.7.0",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.7.0",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "after-hours",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/after-hours",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/after-hours-v0.2.5/after-hours.zip#sha256=6d7f987d753c49252e1420252c0c8697c1a051eec3205df65b35be0f3cb93b58",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/after-hours",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/after-hours-v0.2.4/after-hours.zip#sha256=ffcf2643e88bf181a3d1f75885a8f70d70d18c5080da62bdf718ef228f68534f",
     "permissions": [
       "messages:send"
     ],
@@ -203,11 +203,11 @@
   {
     "id": "chat-flow",
     "name": "Chat Flow",
-    "version": "1.1.6",
+    "version": "1.1.5",
     "type": "extension",
     "status": "stable",
     "description": "Interactive, stateful auto-reply: a trigger word starts a greeting + numbered menu, replies traverse a configurable menu tree, and per-chat state expires after 15 minutes.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "menu",
@@ -216,15 +216,15 @@
       "auto-reply",
       "chatbot",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.7.0",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.7.0",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "chat-flow",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/chat-flow",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/chat-flow-v1.1.6/chat-flow.zip#sha256=d7b4db02ad4922460964f14f15f93bd4b72bfac1dd4e46108b53d283930c2f0b",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/chat-flow",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/chat-flow-v1.1.5/chat-flow.zip#sha256=2f73c9850ef7b22100c9ec8630e47287cc8dcc271484d0b21884339b885d0a66",
     "permissions": [
       "messages:send",
       "storage:use"
@@ -382,11 +382,11 @@
   {
     "id": "chatwoot-adapter",
     "name": "Chatwoot Adapter",
-    "version": "0.9.5",
+    "version": "0.9.4",
     "type": "extension",
     "status": "stable",
-    "description": "Two-way sync between a WhatsApp session and a Chatwoot inbox: relays WhatsApp messages (1:1 and groups, with media) into Chatwoot as an API-channel inbox, sends agent replies back to WhatsApp, and hands a chat over to a human agent — silencing other OpenWA bots — when an agent takes it in Chatwoot. First consumer of the OpenWA Integration SDK v1; runs sandboxed in the plugin worker.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "description": "Two-way sync between a WhatsApp session and a Chatwoot inbox: relays WhatsApp messages (1:1 and groups, with media) into Chatwoot as an API-channel inbox, sends agent replies back to WhatsApp, and hands a chat over to a human agent — silencing other IDSWA bots — when an agent takes it in Chatwoot. First consumer of the IDSWA Integration SDK v1; runs sandboxed in the plugin worker.",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "chatwoot",
@@ -396,15 +396,15 @@
       "two-way",
       "agent",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.8.7",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.8.7",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "chatwoot-adapter",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/chatwoot-adapter",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/chatwoot-adapter-v0.9.5/chatwoot-adapter.zip#sha256=c866bbc7a3ebdfee4136c7bfdfe31e1d6c345a32081f561ca8542a0364dedf27",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/chatwoot-adapter",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/chatwoot-adapter-v0.9.4/chatwoot-adapter.zip#sha256=4b6d0a61f020b44057ed20b9f4d6573ef169544faae6f57a0162454f04e4b33e",
     "permissions": [
       "net:fetch",
       "conversation:send",
@@ -428,7 +428,7 @@
     "i18n": {
       "es": {
         "name": "Adaptador de Chatwoot",
-        "description": "Sincronización bidireccional entre una sesión de WhatsApp y una bandeja de entrada de Chatwoot: reenvía los mensajes de WhatsApp (1:1 y grupos, con multimedia) a Chatwoot como una bandeja de canal API, devuelve las respuestas de los agentes a WhatsApp y transfiere el chat a un agente humano —silenciando a los demás bots de OpenWA— cuando un agente lo toma en Chatwoot. Primer consumidor del OpenWA Integration SDK v1; se ejecuta en sandbox dentro del worker de plugins.",
+        "description": "Sincronización bidireccional entre una sesión de WhatsApp y una bandeja de entrada de Chatwoot: reenvía los mensajes de WhatsApp (1:1 y grupos, con multimedia) a Chatwoot como una bandeja de canal API, devuelve las respuestas de los agentes a WhatsApp y transfiere el chat a un agente humano —silenciando a los demás bots de IDSWA— cuando un agente lo toma en Chatwoot. Primer consumidor del IDSWA Integration SDK v1; se ejecuta en sandbox dentro del worker de plugins.",
         "config": {
           "baseUrl": {
             "title": "URL base de Chatwoot"
@@ -461,7 +461,7 @@
       },
       "fr": {
         "name": "Adaptateur Chatwoot",
-        "description": "Synchronisation bidirectionnelle entre une session WhatsApp et une boîte de réception Chatwoot : relaie les messages WhatsApp (1:1 et groupes, avec médias) vers Chatwoot en tant que boîte de réception de canal API, renvoie les réponses des agents vers WhatsApp, et transfère un chat à un agent humain — en faisant taire les autres bots OpenWA — lorsqu'un agent le prend en charge dans Chatwoot. Premier consommateur du SDK d'intégration OpenWA v1 ; s'exécute en sandbox dans le worker de plugins.",
+        "description": "Synchronisation bidirectionnelle entre une session WhatsApp et une boîte de réception Chatwoot : relaie les messages WhatsApp (1:1 et groupes, avec médias) vers Chatwoot en tant que boîte de réception de canal API, renvoie les réponses des agents vers WhatsApp, et transfère un chat à un agent humain — en faisant taire les autres bots IDSWA — lorsqu'un agent le prend en charge dans Chatwoot. Premier consommateur du SDK d'intégration IDSWA v1 ; s'exécute en sandbox dans le worker de plugins.",
         "config": {
           "baseUrl": {
             "title": "URL de base de Chatwoot"
@@ -494,7 +494,7 @@
       },
       "it": {
         "name": "Adattatore Chatwoot",
-        "description": "Sincronizzazione bidirezionale tra una sessione WhatsApp e una casella di posta Chatwoot: inoltra i messaggi WhatsApp (1:1 e gruppi, con media) a Chatwoot come casella di canale API, restituisce le risposte degli agenti a WhatsApp e passa la chat a un agente umano — silenziando gli altri bot OpenWA — quando un agente la prende in carico in Chatwoot. Primo consumatore dell'OpenWA Integration SDK v1; eseguito in sandbox nel worker dei plugin.",
+        "description": "Sincronizzazione bidirezionale tra una sessione WhatsApp e una casella di posta Chatwoot: inoltra i messaggi WhatsApp (1:1 e gruppi, con media) a Chatwoot come casella di canale API, restituisce le risposte degli agenti a WhatsApp e passa la chat a un agente umano — silenziando gli altri bot IDSWA — quando un agente la prende in carico in Chatwoot. Primo consumatore dell'IDSWA Integration SDK v1; eseguito in sandbox nel worker dei plugin.",
         "config": {
           "baseUrl": {
             "title": "URL base di Chatwoot"
@@ -527,7 +527,7 @@
       },
       "ar": {
         "name": "موصّل Chatwoot",
-        "description": "مزامنة ثنائية الاتجاه بين جلسة WhatsApp وصندوق وارد Chatwoot: ينقل رسائل WhatsApp (الفردية والجماعية، مع الوسائط) إلى Chatwoot كصندوق وارد بقناة API، ويعيد ردود الوكلاء إلى WhatsApp، ويحوّل المحادثة إلى وكيل بشري — مع إسكات بوتات OpenWA الأخرى — عندما يتولاها وكيل في Chatwoot. أول مستهلك لـ OpenWA Integration SDK v1؛ يعمل في بيئة معزولة داخل عامل الإضافات.",
+        "description": "مزامنة ثنائية الاتجاه بين جلسة WhatsApp وصندوق وارد Chatwoot: ينقل رسائل WhatsApp (الفردية والجماعية، مع الوسائط) إلى Chatwoot كصندوق وارد بقناة API، ويعيد ردود الوكلاء إلى WhatsApp، ويحوّل المحادثة إلى وكيل بشري — مع إسكات بوتات IDSWA الأخرى — عندما يتولاها وكيل في Chatwoot. أول مستهلك لـ IDSWA Integration SDK v1؛ يعمل في بيئة معزولة داخل عامل الإضافات.",
         "config": {
           "baseUrl": {
             "title": "الرابط الأساسي لـ Chatwoot"
@@ -560,7 +560,7 @@
       },
       "he": {
         "name": "מתאם Chatwoot",
-        "description": "סנכרון דו-כיווני בין סשן WhatsApp לתיבת דואר נכנס של Chatwoot: מעביר הודעות WhatsApp (אישיות וקבוצתיות, עם מדיה) ל-Chatwoot כתיבת דואר בערוץ API, מחזיר תשובות נציגים ל-WhatsApp, ומעביר צ'אט לנציג אנושי — תוך השתקת הבוטים האחרים של OpenWA — כאשר נציג לוקח אותו ב-Chatwoot. הצרכן הראשון של OpenWA Integration SDK v1; רץ בארגז חול בתוך עובד התוספים.",
+        "description": "סנכרון דו-כיווני בין סשן WhatsApp לתיבת דואר נכנס של Chatwoot: מעביר הודעות WhatsApp (אישיות וקבוצתיות, עם מדיה) ל-Chatwoot כתיבת דואר בערוץ API, מחזיר תשובות נציגים ל-WhatsApp, ומעביר צ'אט לנציג אנושי — תוך השתקת הבוטים האחרים של IDSWA — כאשר נציג לוקח אותו ב-Chatwoot. הצרכן הראשון של IDSWA Integration SDK v1; רץ בארגז חול בתוך עובד התוספים.",
         "config": {
           "baseUrl": {
             "title": "כתובת הבסיס של Chatwoot"
@@ -593,7 +593,7 @@
       },
       "te": {
         "name": "Chatwoot అడాప్టర్",
-        "description": "WhatsApp సెషన్ మరియు Chatwoot ఇన్‌బాక్స్ మధ్య రెండు మార్గాల సింక్: WhatsApp సందేశాలను (1:1 మరియు గ్రూపులు, మీడియాతో సహా) API-ఛానెల్ ఇన్‌బాక్స్‌గా Chatwoot లోకి రిలే చేస్తుంది, ఏజెంట్ ప్రత్యుత్తరాలను తిరిగి WhatsApp కు పంపుతుంది, మరియు ఏజెంట్ Chatwoot లో చాట్‌ను స్వీకరించినప్పుడు దానిని మానవ ఏజెంట్‌కు అప్పగిస్తుంది — ఇతర OpenWA బాట్‌లను మౌనంగా ఉంచుతూ. OpenWA Integration SDK v1 యొక్క మొదటి వినియోగదారు; ప్లగిన్ వర్కర్‌లో శ్యాండ్‌బాక్స్‌లో నడుస్తుంది.",
+        "description": "WhatsApp సెషన్ మరియు Chatwoot ఇన్‌బాక్స్ మధ్య రెండు మార్గాల సింక్: WhatsApp సందేశాలను (1:1 మరియు గ్రూపులు, మీడియాతో సహా) API-ఛానెల్ ఇన్‌బాక్స్‌గా Chatwoot లోకి రిలే చేస్తుంది, ఏజెంట్ ప్రత్యుత్తరాలను తిరిగి WhatsApp కు పంపుతుంది, మరియు ఏజెంట్ Chatwoot లో చాట్‌ను స్వీకరించినప్పుడు దానిని మానవ ఏజెంట్‌కు అప్పగిస్తుంది — ఇతర IDSWA బాట్‌లను మౌనంగా ఉంచుతూ. IDSWA Integration SDK v1 యొక్క మొదటి వినియోగదారు; ప్లగిన్ వర్కర్‌లో శ్యాండ్‌బాక్స్‌లో నడుస్తుంది.",
         "config": {
           "baseUrl": {
             "title": "Chatwoot బేస్ URL"
@@ -626,7 +626,7 @@
       },
       "zh-CN": {
         "name": "Chatwoot 适配器",
-        "description": "在 WhatsApp 会话与 Chatwoot 收件箱之间双向同步：将 WhatsApp 消息（一对一和群组，含媒体）作为 API 渠道收件箱转发到 Chatwoot，把客服回复发回 WhatsApp，并在客服在 Chatwoot 接管会话时将其转交给人工客服——同时让其他 OpenWA 机器人静默。OpenWA Integration SDK v1 的首个使用者；在插件工作器中以沙箱方式运行。",
+        "description": "在 WhatsApp 会话与 Chatwoot 收件箱之间双向同步：将 WhatsApp 消息（一对一和群组，含媒体）作为 API 渠道收件箱转发到 Chatwoot，把客服回复发回 WhatsApp，并在客服在 Chatwoot 接管会话时将其转交给人工客服——同时让其他 IDSWA 机器人静默。IDSWA Integration SDK v1 的首个使用者；在插件工作器中以沙箱方式运行。",
         "config": {
           "baseUrl": {
             "title": "Chatwoot 基础 URL"
@@ -659,7 +659,7 @@
       },
       "zh-HK": {
         "name": "Chatwoot 適配器",
-        "description": "在 WhatsApp 工作階段與 Chatwoot 收件箱之間雙向同步：將 WhatsApp 訊息（一對一及群組，含媒體）以 API 渠道收件箱形式轉發到 Chatwoot，把客服回覆傳回 WhatsApp，並在客服於 Chatwoot 接管對話時轉交給人工客服——同時令其他 OpenWA 機器人靜音。OpenWA Integration SDK v1 的首個使用者；在插件工作器中以沙箱方式運行。",
+        "description": "在 WhatsApp 工作階段與 Chatwoot 收件箱之間雙向同步：將 WhatsApp 訊息（一對一及群組，含媒體）以 API 渠道收件箱形式轉發到 Chatwoot，把客服回覆傳回 WhatsApp，並在客服於 Chatwoot 接管對話時轉交給人工客服——同時令其他 IDSWA 機器人靜音。IDSWA Integration SDK v1 的首個使用者；在插件工作器中以沙箱方式運行。",
         "config": {
           "baseUrl": {
             "title": "Chatwoot 基礎 URL"
@@ -695,11 +695,11 @@
   {
     "id": "faq-bot",
     "name": "FAQ / Auto-Reply Bot",
-    "version": "0.2.5",
+    "version": "0.2.4",
     "type": "extension",
     "status": "stable",
     "description": "Auto-replies to inbound WhatsApp messages from configurable FAQ keyword/regex rules.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "faq",
@@ -707,15 +707,15 @@
       "chatbot",
       "support",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.6.1",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.6.1",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "faq-bot",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/faq-bot",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/faq-bot-v0.2.5/faq-bot.zip#sha256=50e71bcd2f724d6143294f7c9d2e60c88a3e5b3afadbdad63f6b42bf79d16e40",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/faq-bot",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/faq-bot-v0.2.4/faq-bot.zip#sha256=5cbafc44ea91aa89918d79c1c2280f51641dd1cd8e6b5987031a7f86b2e50bcd",
     "permissions": [
       "messages:send"
     ],
@@ -872,11 +872,11 @@
   {
     "id": "group-translate",
     "name": "Group Auto-Translation",
-    "version": "1.3.5",
+    "version": "1.3.4",
     "type": "extension",
     "status": "stable",
     "description": "Auto-translates group messages between participants' languages via a LibreTranslate backend. Configure in-chat with /tr commands. Admin-gated; disabled until enabled.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "translation",
@@ -884,15 +884,15 @@
       "i18n",
       "groups",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.7.0",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.7.0",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "group-translate",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/group-translate",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/group-translate-v1.3.5/group-translate.zip#sha256=2b2d80c8703cee9e8658d1810234318396e6da1036bb3599477475aac91d40a4",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/group-translate",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/group-translate-v1.3.4/group-translate.zip#sha256=59af210cd868cbcd649dc1b11327b2ec92faf7bbcb1ade8635dbebf365a2a97c",
     "permissions": [
       "messages:send",
       "engine:read",
@@ -1156,11 +1156,11 @@
   {
     "id": "gsheets-logger",
     "name": "Google Sheets Logger",
-    "version": "0.3.7",
+    "version": "0.3.6",
     "type": "extension",
     "status": "stable",
     "description": "Logs WhatsApp message events to a Google Sheet via a service account.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "google-sheets",
@@ -1168,15 +1168,15 @@
       "audit",
       "crm",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.7.0",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.7.0",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "gsheets-logger",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/gsheets-logger",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/gsheets-logger-v0.3.7/gsheets-logger.zip#sha256=31936f8d805eaf19b62ed93227f1af39829c4afff79d551eb907870fed14ddb7",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/gsheets-logger",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/gsheets-logger-v0.3.6/gsheets-logger.zip#sha256=4e5878093e7b1e0a8a6478e06088928188e08060a8cdd484f9639784afa9833a",
     "permissions": [
       "net:fetch",
       "storage:use"
@@ -1363,11 +1363,11 @@
   {
     "id": "http-action",
     "name": "HTTP Action Bot",
-    "version": "0.2.6",
+    "version": "0.2.5",
     "type": "extension",
     "status": "stable",
     "description": "Triggers safe REST API requests from WhatsApp commands and renders JSON responses back to chat.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "api",
@@ -1375,15 +1375,15 @@
       "automation",
       "connector",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.8.0",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.8.0",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "http-action",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/http-action",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/http-action-v0.2.6/http-action.zip#sha256=650634f8acd20b4a2f0391b078b071f6512f3308d75d43a8341c0764bbcb4da5",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/http-action",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/http-action-v0.2.5/http-action.zip#sha256=691e8ade89982afd4bf0f8e74428dd5b2c55ed3da270c8cab41dba2654cc8660",
     "permissions": [
       "net:fetch",
       "conversation:send",
@@ -1643,11 +1643,11 @@
   {
     "id": "supabase-otp-hook",
     "name": "Supabase Auth OTP",
-    "version": "0.3.4",
+    "version": "0.3.3",
     "type": "extension",
     "status": "beta",
     "description": "Deliver Supabase Auth phone OTPs over WhatsApp.",
-    "author": "maplerichie",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "supabase",
@@ -1657,15 +1657,15 @@
       "whatsapp",
       "verification",
       "standard-webhooks",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.8.16",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.8.16",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "supabase-otp-hook",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/supabase-otp-hook",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/supabase-otp-hook-v0.3.4/supabase-otp-hook.zip#sha256=827be1d02d8578dda21ca37c10ae14bb38a165472375c845639d0cf4bcd5cc48",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/supabase-otp-hook",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/supabase-otp-hook-v0.3.3/supabase-otp-hook.zip#sha256=ade0e7146a3edc232b9b84e582750cb6a62da3b4d90e1586a2f3e5ba759f73e1",
     "permissions": [
       "webhook:ingress",
       "messages:send"
@@ -1828,11 +1828,11 @@
   {
     "id": "typebot-connector",
     "name": "Typebot Connector",
-    "version": "0.2.6",
+    "version": "0.2.5",
     "type": "extension",
     "status": "stable",
     "description": "Runs a Typebot flow as the brain of a WhatsApp bot: inbound messages drive a Typebot chat session via the live Chat API, and the bot's replies — text, media, and numbered-choice inputs — are sent back to WhatsApp. Auto-starts every chat, handles file-upload steps, and resets when the flow ends or after an idle timeout. Runs sandboxed in the plugin worker; no public URL or webhook required.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "typebot",
@@ -1842,15 +1842,15 @@
       "no-code",
       "two-way",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.8.2",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.8.2",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "typebot-connector",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/typebot-connector",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/typebot-connector-v0.2.6/typebot-connector.zip#sha256=5c7cf5a87bed497f01593a9cd2f02e13adbba18b8bd6c79f198da5f9db2cb5fb",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/typebot-connector",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/typebot-connector-v0.2.5/typebot-connector.zip#sha256=1107e5dc59c1ecf6a7624b583d0f4b14259a8c41be3a6b943742af0854a9a5a0",
     "permissions": [
       "net:fetch",
       "conversation:send",
@@ -2087,11 +2087,11 @@
   {
     "id": "voice-transcription",
     "name": "Voice Note Transcription",
-    "version": "1.2.7",
+    "version": "1.2.6",
     "type": "extension",
     "status": "beta",
     "description": "Transcribes inbound WhatsApp voice notes to text via an OpenAI-compatible speech-to-text backend (self-hosted Speaches/faster-whisper or hosted Groq/OpenAI) and delivers a `message.transcription` event to your webhook — so bots and AI can read and reply to audio. Off the message-delivery path; disabled until enabled.",
-    "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+    "author": "malikebad <ebadm7251@gmail.com>",
     "license": "MIT",
     "keywords": [
       "transcription",
@@ -2101,15 +2101,15 @@
       "voice",
       "audio",
       "whatsapp",
-      "openwa"
+      "idswa"
     ],
-    "minOpenWAVersion": "0.7.0",
-    "testedOpenWAVersion": "0.23.0",
+    "minIDSWAVersion": "0.7.0",
+    "testedIDSWAVersion": "0.23.0",
     "releasedAt": "2026-08-20",
     "repoPath": "voice-transcription",
-    "repoUrl": "https://github.com/rmyndharis/OpenWA-plugins",
-    "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/voice-transcription",
-    "download": "https://github.com/rmyndharis/OpenWA-plugins/releases/download/voice-transcription-v1.2.7/voice-transcription.zip#sha256=ac4c051c5ccca96a2c9685a6dfa28a3aee700c43a7befa7143ae0a7281fd39ca",
+    "repoUrl": "https://github.com/EbxdMalix/IDSWA-plugins",
+    "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/voice-transcription",
+    "download": "https://github.com/EbxdMalix/IDSWA-plugins/releases/download/voice-transcription-v1.2.6/voice-transcription.zip#sha256=d6b1465ed5940026df58f47332842a66232210f58f2f1e04dd1ffaf2e72bf503",
     "permissions": [
       "net:fetch",
       "messages:send",

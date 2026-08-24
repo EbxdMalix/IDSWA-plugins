@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext } from '../types/openwa';
+import type { IPlugin, PluginContext } from '../types/idswa';
 import { handleSendSms, readConfig } from './handler.ts';
 
 /**

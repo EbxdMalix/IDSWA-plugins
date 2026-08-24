@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.7.0-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fchat-flow.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=chat-flow)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.7.0-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fchat-flow.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=chat-flow)
 
 ## Details
 
@@ -17,12 +17,12 @@
 | **Version** | 1.1.6 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.7.0 (tested 0.23.0) |
-| **Keywords** | menu, flow, interactive, auto-reply, chatbot, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/chat-flow](https://github.com/rmyndharis/OpenWA-plugins/tree/main/chat-flow) |
+| **Requires IDSWA** | ≥ 0.7.0 (tested 0.23.0) |
+| **Keywords** | menu, flow, interactive, auto-reply, chatbot, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/chat-flow](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/chat-flow) |
 <!-- END DETAILS -->
 
 ## Features
@@ -67,7 +67,7 @@ sandboxed frame. A reply that doesn't match any option re-sends the current menu
 
 ## Setup
 
-1. Have OpenWA **≥ 0.7.0** running with a logged-in WhatsApp session.
+1. Have IDSWA **≥ 0.7.0** running with a logged-in WhatsApp session.
 2. Install and enable the plugin (see [Install](#install)).
 3. Design your menu tree — via the built-in visual editor or the JSON config
    (see [Configuration](#configuration)).
@@ -77,20 +77,20 @@ sandboxed frame. A reply that doesn't match any option re-sends the current menu
 ```bash
 node package.mjs chat-flow    # produces chat-flow.zip at the repo root
 
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" -F "file=@chat-flow.zip"
 
-curl -X PUT "https://your-openwa-host/api/plugins/chat-flow/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/chat-flow/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" -H "Content-Type: application/json" \
   -d '{ "config": { "trigger": "menu", "greeting": "Hi! 1. Pricing 2. Support",
         "options": [ { "key": "1", "text": "Plans start at Rp100.000" },
                      { "key": "2", "text": "Email support@example.com" } ] } }'
 
-curl -X POST "https://your-openwa-host/api/plugins/chat-flow/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/chat-flow/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
-Or download the packaged `.zip` from [Releases](https://github.com/rmyndharis/OpenWA-plugins/releases)
+Or download the packaged `.zip` from [Releases](https://github.com/EbxdMalix/IDSWA-plugins/releases)
 and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab), then design the tree in the
 plugin's **Flow editor**.
 
@@ -105,7 +105,7 @@ plugin's **Flow editor**.
 
 ## Compatibility
 
-Targets OpenWA **≥ 0.7.0** — relies on per-session config resolution (`sessionScoped`), live
+Targets IDSWA **≥ 0.7.0** — relies on per-session config resolution (`sessionScoped`), live
 `onConfigChange`, and the `configUi` sandboxed config editor. Uses only `ctx.messages.reply`,
 `ctx.storage`, `ctx.logger`, and `ctx.config`.
 
@@ -138,4 +138,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](../LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](../LICENSE) © malikebad & IDSWA Contributors.

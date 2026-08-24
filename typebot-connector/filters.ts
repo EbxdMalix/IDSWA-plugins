@@ -1,4 +1,4 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 
 // True when this inbound message should drive a Typebot turn: only real engine messages (not webhook
 // replays/echoes), never our own outbound, must have a chat, and groups only when enabled.

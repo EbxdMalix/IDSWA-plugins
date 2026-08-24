@@ -1,4 +1,4 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import type { Awaiting, ReplyIntent } from './typebot-types.ts';
 
 // Map a WhatsApp reply to the argument for continueChat, given what the bot is waiting for.

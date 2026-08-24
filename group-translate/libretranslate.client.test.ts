@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginNetCapability, PluginNetResponse } from '../types/openwa';
+import type { PluginNetCapability, PluginNetResponse } from '../types/idswa';
 import { LibreTranslateClient } from './libretranslate.client.ts';
 
 function res(partial: { ok?: boolean; status?: number; body?: unknown }): PluginNetResponse {

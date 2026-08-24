@@ -1,4 +1,4 @@
-import type { IncomingMessage, PluginEngineReadCapability } from '../types/openwa';
+import type { IncomingMessage, PluginEngineReadCapability } from '../types/idswa';
 import type { ChatwootClient } from './chatwoot-client.ts';
 import type { MappingStore, ChatLink } from './mapping-store.ts';
 import type { KeyedAsyncLock } from './chat-lock.ts';

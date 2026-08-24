@@ -14,7 +14,7 @@ import type {
   HookContext,
   HookResult,
   IncomingMessage,
-} from "../types/openwa";
+} from "../types/idswa";
 import { OpenAiSttClient } from "./openai-stt.client.ts";
 import { WebhookDelivery } from "./webhook.delivery.ts";
 import {

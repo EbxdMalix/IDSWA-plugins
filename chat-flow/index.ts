@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext, HookContext, HookResult, IncomingMessage } from '../types/openwa';
+import type { IPlugin, PluginContext, HookContext, HookResult, IncomingMessage } from '../types/idswa';
 import { FlowEngine, FlowNode, SessionFlow } from './flow-engine.ts';
 
 export interface MenuNode {

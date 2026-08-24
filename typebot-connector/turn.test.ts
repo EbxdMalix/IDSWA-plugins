@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { IncomingMessage, PluginConversationsCapability, ConversationSendEnvelope, PluginStorage } from '../types/openwa';
+import type { IncomingMessage, PluginConversationsCapability, ConversationSendEnvelope, PluginStorage } from '../types/idswa';
 import type { TypebotConfig, NormalizedResponse } from './typebot-types.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
 import { SessionStore } from './session-store.ts';
@@ -67,7 +67,7 @@ test('group message replies with a quote (replyTo set)', async () => {
   assert.equal(sent[0].replyTo, 'm');
 });
 
-test('group: media parts omit replyTo (OpenWA rejects replyTo on media); text parts keep it', async () => {
+test('group: media parts omit replyTo (IDSWA rejects replyTo on media); text parts keep it', async () => {
   const startChat: NormalizedResponse = {
     sessionId: 'S1',
     bubbles: [{ kind: 'text', markdown: 'Hi' }, { kind: 'image', url: 'https://x/i.png' }],

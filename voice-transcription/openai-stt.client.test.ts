@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginNetCapability, PluginNetRequestInit, PluginNetResponse } from '../types/openwa';
+import type { PluginNetCapability, PluginNetRequestInit, PluginNetResponse } from '../types/idswa';
 import { OpenAiSttClient, sanitizeContentType } from './openai-stt.client.ts';
 
 test('sanitizeContentType keeps a valid mimetype (codec-stripped) but rejects CRLF / garbage', () => {

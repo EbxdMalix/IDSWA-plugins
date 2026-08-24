@@ -35,7 +35,7 @@ const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'it', 'ar', 'he', 'te', 'zh-CN', 'z
 // point. `storage:use` reached seven manifests without anything in this repo ever checking the name.
 // The GitHub owners whose Releases this catalogue is allowed to point at. A plugin may credit any
 // author; the ARTIFACT must come from a repo this project publishes.
-const RELEASE_OWNERS = new Set(['rmyndharis']);
+const RELEASE_OWNERS = new Set(['EbxdMalix']);
 
 // Both taken verbatim from PLUGIN-STANDARD.md — the shape at its manifest example and the reserved
 // list at its "Reserved ids" line. Neither was checked anywhere, so a plugin could take an id the
@@ -82,14 +82,14 @@ function validateManifest(id, manifest) {
   if (manifest.sessionScoped === undefined) {
     throw new Error(`${id}: manifest.json must declare "sessionScoped" explicitly (true or false)`);
   }
-  if (manifest.status === 'stable' && !manifest.testedOpenWAVersion) {
-    throw new Error(`${id}: status "stable" requires testedOpenWAVersion (the newest host actually smoke-tested)`);
+  if (manifest.status === 'stable' && !manifest.testedIDSWAVersion) {
+    throw new Error(`${id}: status "stable" requires testedIDSWAVersion (the newest host actually smoke-tested)`);
   }
   for (const p of manifest.permissions ?? []) {
     if (!HOST_PERMISSIONS.has(p)) {
       throw new Error(
         `${id}: unknown permission "${p}" — the host enforces only ${[...HOST_PERMISSIONS].join(', ')}. ` +
-          `If OpenWA has added one, add it to HOST_PERMISSIONS in this file in the same change.`,
+          `If IDSWA has added one, add it to HOST_PERMISSIONS in this file in the same change.`,
       );
     }
   }
@@ -131,7 +131,7 @@ function readChangelogTop(id) {
   return { version: m[1], date: m[2] };
 }
 
-// The digest pinned to each catalog download URL. OpenWA ≥ 0.20.0 refuses an install from an unpinned
+// The digest pinned to each catalog download URL. IDSWA ≥ 0.20.0 refuses an install from an unpinned
 // URL in production (fail-closed integrity for third-party code), so the catalog itself must carry the
 // `#sha256=` fragment: the dashboard passes this URL verbatim to install-url. The digest is computed
 // from a fresh package.mjs build (byte-deterministic: verified that a local build equals the GitHub
@@ -162,8 +162,8 @@ function buildEntry(id) {
     author: manifest.author ?? '',
     license: manifest.license ?? '',
     keywords: manifest.keywords ?? [],
-    minOpenWAVersion: manifest.minOpenWAVersion ?? null,
-    testedOpenWAVersion: manifest.testedOpenWAVersion ?? null,
+    minIDSWAVersion: manifest.minIDSWAVersion ?? null,
+    testedIDSWAVersion: manifest.testedIDSWAVersion ?? null,
     releasedAt: changelog.date,
     repoPath: manifest.id,
     repoUrl: manifest.repository ?? null,
@@ -210,9 +210,9 @@ function detailsBlock(e) {
     `| **Author** | ${authorName(e.author)} |`,
     `| **License** | ${e.license} |`,
     `| **Type** | \`${e.type}\` |`,
-    `| **Requires OpenWA** | ≥ ${e.minOpenWAVersion} ${e.testedOpenWAVersion ? `(tested ${e.testedOpenWAVersion})` : '(not yet smoke-tested)'} |`,
+    `| **Requires IDSWA** | ≥ ${e.minIDSWAVersion} ${e.testedIDSWAVersion ? `(tested ${e.testedIDSWAVersion})` : '(not yet smoke-tested)'} |`,
     `| **Keywords** | ${e.keywords.join(', ')} |`,
-    `| **Repository** | [OpenWA-plugins/${e.id}](${e.homepage}) |`,
+    `| **Repository** | [IDSWA-plugins/${e.id}](${e.homepage}) |`,
     '<!-- END DETAILS -->',
   ].join('\n');
 }

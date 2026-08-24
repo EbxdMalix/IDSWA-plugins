@@ -1,5 +1,5 @@
 import { ConfigStore, GroupState } from './core/ports';
-import type { PluginStorage } from '../types/openwa';
+import type { PluginStorage } from '../types/idswa';
 
 /**
  * ConfigStore backed by the plugin's KV storage (`ctx.storage`). Persists one GroupState

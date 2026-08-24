@@ -1,13 +1,13 @@
 # Supabase Auth OTP → WhatsApp
 
 > Deliver Supabase Auth phone OTPs over WhatsApp. Supabase's Send SMS hook (Standard Webhooks-signed) is
-> verified host-side, and the plugin sends the OTP via an OpenWA WhatsApp session — with synchronous
+> verified host-side, and the plugin sends the OTP via an IDSWA WhatsApp session — with synchronous
 > feedback to Supabase (401 on a bad signature, 503 on a dead session, 200 on accept).
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.8.16-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fsupabase-otp-hook.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=supabase-otp-hook)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.8.16-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fsupabase-otp-hook.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=supabase-otp-hook)
 
 ## Details
 
@@ -21,9 +21,9 @@
 | **Author** | maplerichie |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.8.16 (tested 0.23.0) |
-| **Keywords** | supabase, auth, otp, sms, whatsapp, verification, standard-webhooks, openwa |
-| **Repository** | [OpenWA-plugins/supabase-otp-hook](https://github.com/rmyndharis/OpenWA-plugins/tree/main/supabase-otp-hook) |
+| **Requires IDSWA** | ≥ 0.8.16 (tested 0.23.0) |
+| **Keywords** | supabase, auth, otp, sms, whatsapp, verification, standard-webhooks, idswa |
+| **Repository** | [IDSWA-plugins/supabase-otp-hook](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/supabase-otp-hook) |
 <!-- END DETAILS -->
 
 ## Features
@@ -46,7 +46,7 @@
 
 ## What it does
 
-Supabase calls the OpenWA ingress URL. The host verifies the Standard Webhooks signature against the
+Supabase calls the IDSWA ingress URL. The host verifies the Standard Webhooks signature against the
 instance secret (→ 401 on a mismatch), runs the `session-alive` preflight (→ 503 on a dead session),
 persists the event for dedup, fast-acks Supabase with **200 `application/json`**, then dispatches the
 sandboxed handler async from the ingress worker (retry + DLQ). The handler parses `{ user: { phone },
@@ -55,7 +55,7 @@ to stay within the worker's 5 s dispatch budget.
 
 ## Setup
 
-Requires OpenWA v0.8.16+ (the `standard-webhooks` signature scheme and the `response`/preflight
+Requires IDSWA v0.8.16+ (the `standard-webhooks` signature scheme and the `response`/preflight
 ingress contract) with a logged-in WhatsApp session, and a Supabase project with phone auth.
 
 **Install the plugin, then set its base config, then enable it** (see [Install](#install) below) — in
@@ -71,12 +71,12 @@ curl -X PUT "$OPENWA/api/plugins/supabase-otp-hook/config" \
 
 Then wire the connection:
 
-Wiring order: OpenWA mints the **ingress URL** and the **instance secret** together → paste the URL
+Wiring order: IDSWA mints the **ingress URL** and the **instance secret** together → paste the URL
 into Supabase → paste the secret into the Supabase hook form (the host uses it to verify the Standard
 Webhooks signature). The reverse order works too: generate the secret in Supabase first and pass it
 to the mint call.
 
-**1. Mint an OpenWA instance.** Creates the ingress URL and binds the sending session.
+**1. Mint an IDSWA instance.** Creates the ingress URL and binds the sending session.
 
 - **Option A — bind to a session.** Set `sessionScope` to a logged-in WhatsApp session id. Simplest.
 - **Option B — use a fallback.** Leave `sessionScope` blank, set `fallbackSessionId` in plugin config.
@@ -100,7 +100,7 @@ curl -X POST "$OPENWA/api/integration/plugins/supabase-otp-hook/instances" \
   }'
 ```
 
-`secret` is optional: omit it and OpenWA auto-generates one, revealing the plaintext once in the
+`secret` is optional: omit it and IDSWA auto-generates one, revealing the plaintext once in the
 create response. Either way, copy the **ingress URL** and the **plaintext secret** from the response:
 `https://<host>/api/ingress/supabase-otp-hook/default/send-sms`.
 
@@ -117,7 +117,7 @@ create response. Either way, copy the **ingress URL** and the **plaintext secret
 
 ## Install
 
-**Option A — dashboard.** Download `supabase-otp-hook.zip` from the [Releases page](https://github.com/rmyndharis/OpenWA-plugins/releases), then dashboard → Plugins → Install → upload.
+**Option A — dashboard.** Download `supabase-otp-hook.zip` from the [Releases page](https://github.com/EbxdMalix/IDSWA-plugins/releases), then dashboard → Plugins → Install → upload.
 
 **Option B — CLI.**
 
@@ -150,7 +150,7 @@ Session scope (which session sends) is also set at instance mint time, not in th
 
 ## Compatibility
 
-- **OpenWA** ≥ 0.8.16 — Integration SDK v1 with the `standard-webhooks` ingress signature scheme and
+- **IDSWA** ≥ 0.8.16 — Integration SDK v1 with the `standard-webhooks` ingress signature scheme and
   the `response`/preflight contract (`ctx.registerWebhook`, `webhook:ingress` permission).
 - **Supabase** — HTTP Send SMS hook with Standard Webhooks signing. SQL (Postgres function) hook variant not supported.
 - **WhatsApp** — may rate-limit or require an approved business template for business-initiated messages. Adjust `messageTemplate` to match your approved wording.

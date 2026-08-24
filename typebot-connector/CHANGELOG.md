@@ -10,19 +10,19 @@ All notable changes to the Typebot Connector plugin are documented here. The for
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.2.5] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.2.4] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.2.3] — 2026-08-15
 
@@ -41,7 +41,7 @@ All notable changes to the Typebot Connector plugin are documented here. The for
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -54,7 +54,7 @@ All notable changes to the Typebot Connector plugin are documented here. The for
 - **Declared the `storage:use` permission.** The plugin keeps one small record per conversation in
   plugin storage — the Typebot session id, what input the bot is waiting for, and when the chat was
   last active. Typebot owns the flow itself; this record is the only thing tying a WhatsApp chat to
-  its running Typebot session. OpenWA is moving `ctx.storage` behind a permission the manifest has to
+  its running Typebot session. IDSWA is moving `ctx.storage` behind a permission the manifest has to
   declare, and without it that record cannot be read or written: every reply from a contact would be
   treated as a brand-new conversation and restart the flow from the top, forever. Declaring the
   permission changes nothing on the hosts you run today — an unrecognized permission is ignored — so
@@ -74,7 +74,7 @@ All notable changes to the Typebot Connector plugin are documented here. The for
 ### Verified
 
 - **Confirmed fixed against a live self-hosted Typebot install.** On 2026-07-31, a real WhatsApp photo was
-  smoke-tested end-to-end through OpenWA 0.12.1 against a self-hosted Typebot v3.17.2 instance: the upload
+  smoke-tested end-to-end through IDSWA 0.12.1 against a self-hosted Typebot v3.17.2 instance: the upload
   reached storage and the file-upload step advanced the flow to the next block.
 
 ## [0.2.0] — 2026-07-31
@@ -94,7 +94,7 @@ All notable changes to the Typebot Connector plugin are documented here. The for
 ## [0.1.1] — 2026-07-30
 
 First release verified against a live server: a self-hosted Typebot v3.17.2 driven over real WhatsApp
-through OpenWA 0.12.1, rather than against unit tests alone. That run is what found the first item.
+through IDSWA 0.12.1, rather than against unit tests alone. That run is what found the first item.
 
 ### Fixed
 
@@ -135,7 +135,7 @@ through OpenWA 0.12.1, rather than against unit tests alone. That run is what fo
   its throttle are now both per session. Caught in self-review before release.
 - **Sessions abandoned mid-flow were never cleaned up.** A completed flow clears its own row, but a
   contact who simply stops replying leaves one behind forever. Beyond disk, that has a running cost:
-  OpenWA re-measures a plugin's storage quota on every write by stat-ing every key it owns, so abandoned
+  IDSWA re-measures a plugin's storage quota on every write by stat-ing every key it owns, so abandoned
   rows make each later turn slower, permanently. Rows idle past `sessionTimeoutMinutes` are now swept at
   most hourly, driven by traffic rather than a timer so a disabled plugin leaves nothing running.
 
@@ -164,5 +164,5 @@ Initial release — a WhatsApp ↔ Typebot bridge that runs a Typebot flow as th
 - **Runtime:** runs sandboxed in the plugin worker; the Typebot call is off-dispatch (never blocks the WA
   pipeline) and serialized per chat. No public URL or webhook required.
 
-Requires OpenWA **≥ 0.8.2** with Integration SDK v1 (`net:fetch` + `conversation:send`) — media bubbles use
+Requires IDSWA **≥ 0.8.2** with Integration SDK v1 (`net:fetch` + `conversation:send`) — media bubbles use
 the media-send support added to `conversation.send` in 0.8.2.

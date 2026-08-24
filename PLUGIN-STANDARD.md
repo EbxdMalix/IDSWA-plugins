@@ -1,8 +1,8 @@
-# OpenWA Plugin Standard
+# IDSWA Plugin Standard
 
 The conventions every plugin in this repository follows, so the catalog stays consistent and
-management/automation stays easy. Verified against OpenWA's plugin runtime (sandboxed worker model) at
-the same baseline as [`types/openwa.d.ts`](./types/openwa.d.ts) — re-check both together, since this
+management/automation stays easy. Verified against IDSWA's plugin runtime (sandboxed worker model) at
+the same baseline as [`types/idswa.d.ts`](./types/idswa.d.ts) — re-check both together, since this
 document describes host behaviour that has moved repeatedly (per-session config in 0.7, boot re-enable
 and the storage quota in 0.12, the `storage:use` gate after 0.16).
 
@@ -10,7 +10,7 @@ and the storage quota in 0.12, the `storage:use` gate after 0.16).
 
 | Concern | Lives in | Notes |
 | ------- | -------- | ----- |
-| Machine-readable metadata | `manifest.json` | Single source of truth. OpenWA reads required fields and ignores unknown ones. |
+| Machine-readable metadata | `manifest.json` | Single source of truth. IDSWA reads required fields and ignores unknown ones. |
 | Human-readable docs | `README.md` | Standard section order (below). |
 | Dated version history | `CHANGELOG.md` | Keep a Changelog + SemVer. The release date lives here. |
 | Computed artifacts (size, sha256) | release time | GitHub Release notes + assets, plus the `#sha256=` pin on each catalog `download` URL; never hand-written. |
@@ -19,7 +19,7 @@ and the storage quota in 0.12, the `storage:use` gate after 0.16).
 ## Repository layout
 
 ```
-OpenWA-plugins/
+IDSWA-plugins/
 ├─ plugins.json            # generated catalog (one entry per plugin)
 ├─ PLUGIN-STANDARD.md      # this file
 ├─ scripts/catalog.mjs     # catalog generator + drift check
@@ -37,14 +37,14 @@ OpenWA-plugins/
 
 ```jsonc
 {
-  // ── Required by OpenWA (install fails without these) ──
+  // ── Required by IDSWA (install fails without these) ──
   "id": "my-plugin",            // /^[a-z0-9][a-z0-9._-]*$/i, unique, not reserved
   "name": "My Plugin",          // shown in the dashboard
   "version": "1.0.0",           // SemVer; MUST equal the top released CHANGELOG heading
   "type": "extension",          // only "extension" is user-installable
   "main": "dist/index.js",      // require()-able entry, present in the package
 
-  // ── Surfaced by OpenWA ──
+  // ── Surfaced by IDSWA ──
   "description": "…",            // rendered in the dashboard card + returned by the API
   "provides": ["feature-tag"],  // rendered as tags in the dashboard card
   "permissions": [],            // see the five values below — enforced at the capability boundary
@@ -62,13 +62,13 @@ OpenWA-plugins/
   "author": "Name <email>",     // string form (npm-style)
   "license": "MIT",            // stored and returned, not rendered
 
-  // ── Standard catalog metadata (OpenWA stores but ignores; used by our tooling) ──
-  "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/my-plugin",
-  "repository": "https://github.com/rmyndharis/OpenWA-plugins",
+  // ── Standard catalog metadata (IDSWA stores but ignores; used by our tooling) ──
+  "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/my-plugin",
+  "repository": "https://github.com/EbxdMalix/IDSWA-plugins",
   "keywords": ["…"],
   "status": "stable",           // "stable" | "beta" | "development"
-  "minOpenWAVersion": "0.7.0",  // compatibility convention (OpenWA does not enforce it yet)
-  "testedOpenWAVersion": "0.7.0"
+  "minIDSWAVersion": "0.7.0",  // compatibility convention (IDSWA does not enforce it yet)
+  "testedIDSWAVersion": "0.7.0"
 }
 ```
 
@@ -76,7 +76,7 @@ Repo gates — all hard failures in CI. `scripts/catalog.mjs` refuses to build t
 plugin:
 
 - declares `sessionScoped` explicitly (`true` or `false`);
-- declares `testedOpenWAVersion` when `status` is `"stable"`;
+- declares `testedIDSWAVersion` when `status` is `"stable"`;
 - ships a `CHANGELOG.md` carrying a released `## [x.y.z] — YYYY-MM-DD` heading;
 - has a `manifest.json` `version` equal to that heading's version.
 
@@ -161,7 +161,7 @@ under a `### Per-session config` heading, with the reason and any workaround (e.
 session"). See the per-plugin README convention below.
 
 **Reserved ids** (cannot be used): `whatsapp-web.js`, `baileys`, `auto-reply`, `translation`.
-**Package limits** (enforced by OpenWA at install): ≤ 5 MB compressed, ≤ 200 files, ≤ 20 MB uncompressed.
+**Package limits** (enforced by IDSWA at install): ≤ 5 MB compressed, ≤ 200 files, ≤ 20 MB uncompressed.
 **Ship compiled JS** — the loader `require()`s `main`; build with `node package.mjs <id>`.
 
 ## Co-installation: ordering and claiming
@@ -230,7 +230,7 @@ itself — a business-hours condition at the top of the flow — rather than in 
 ## Runtime contract (observed)
 
 These behaviors are **observed from the host, not a written host contract** — they are load-bearing for
-correct plugins and were each learned the hard way. Re-verify against OpenWA core when upgrading.
+correct plugins and were each learned the hard way. Re-verify against IDSWA core when upgrading.
 
 1. **`ctx.net.fetch` responses have no `.json()` / `.text()` / `.arrayBuffer()`** — functions cannot
    cross the worker structuredClone boundary, so the response is a plain
@@ -250,7 +250,7 @@ correct plugins and were each learned the hard way. Re-verify against OpenWA cor
    resolve to the manifest's, silently. (Top-level only — defaults nested under `properties`/`items`
    are not seeded. A required field with no declared default deliberately stays absent, because that
    needs real operator input; the host never enforces `required` itself.)
-4. **Host boot re-enables every plugin the operator had enabled** (OpenWA ≥ 0.12; earlier hosts really
+4. **Host boot re-enables every plugin the operator had enabled** (IDSWA ≥ 0.12; earlier hosts really
    did require a manual re-enable). The runtime `status` is still reset on load, but the operator's
    standing decision is persisted separately and replayed at boot. `ctx.config` and `ctx.storage`
    survive, so dedup/state markers in storage are safe. What this demands of a plugin:
@@ -305,18 +305,18 @@ there rather than a silent publish into `plugins.json`:
 | `net:fetch` | `ctx.net.fetch`, further scoped by manifest `net.allow` / `net.allowConfigHosts` |
 | `conversation:send` | `ctx.conversations.send` **and** `ctx.handover.set` **and** `ctx.mappings.*` |
 | `webhook:ingress` | `ctx.registerWebhook`; **required** whenever the manifest declares `ingress`, or the whole plugin fails to load |
-| `storage:use` | `ctx.storage.get` / `.set` / `.delete` / `.list`. Ungated until OpenWA gated it, so declare it as soon as a plugin persists anything: an older host ignores the unrecognized name, a newer one denies the call — and the denial lands mid-run, because permissions are checked at the call and not at load |
-| `search:provide` | `ctx.registerSearchProvider`. Not vendored in `types/openwa.d.ts` and used by no plugin here; under the default `SEARCH_PROVIDER=auto` a plugin that registers becomes the gateway's active search backend |
+| `storage:use` | `ctx.storage.get` / `.set` / `.delete` / `.list`. Ungated until IDSWA gated it, so declare it as soon as a plugin persists anything: an older host ignores the unrecognized name, a newer one denies the call — and the denial lands mid-run, because permissions are checked at the call and not at load |
+| `search:provide` | `ctx.registerSearchProvider`. Not vendored in `types/idswa.d.ts` and used by no plugin here; under the default `SEARCH_PROVIDER=auto` a plugin that registers becomes the gateway's active search backend |
 
 An ingress route with `signature.scheme: "none"` is a hard load failure for the entire plugin unless the
 operator sets `ALLOW_UNSIGNED_INGRESS=true`. `mode: "sync-reply"` is inert dead code — declare
 synchronous behavior via `ingress[].response` instead. A `WebhookResponse` returned from your handler is
 ignored; the provider's reply comes from `ingress[].response.ack` (default 202).
 
-`minOpenWAVersion` is advisory (never enforced by the host). Still bump it when a plugin *requires* a
+`minIDSWAVersion` is advisory (never enforced by the host). Still bump it when a plugin *requires* a
 newer capability: `canonicalChatId` → 0.8.7, Integration SDK v1 (`sdkVersion: "1"` — a STRING; the
 host's ingress validation runs `sdkVersion.split('.')`, so a JSON number throws at load) → 0.8.x,
-`getChatHistory` → 0.8.5. Keep `testedOpenWAVersion` honest: it is the newest host the plugin was
+`getChatHistory` → 0.8.5. Keep `testedIDSWAVersion` honest: it is the newest host the plugin was
 actually smoke-tested against.
 
 ## `README.md` — required sections (in order)
@@ -324,15 +324,15 @@ actually smoke-tested against.
 1. **Title + one-line tagline**, then a small badge row in this exact order:
    1. `type` — `https://img.shields.io/badge/type-<type>-blue.svg`
    2. `license` — `https://img.shields.io/badge/license-MIT-green.svg`
-   3. `OpenWA` — `https://img.shields.io/badge/OpenWA-%E2%89%A5%20<minOpenWAVersion>-25D366.svg`
+   3. `IDSWA` — `https://img.shields.io/badge/IDSWA-%E2%89%A5%20<minIDSWAVersion>-25D366.svg`
    4. `downloads` — cumulative .zip downloads across all releases of this plugin, fed by
       `scripts/download-badges.mjs` (see the `download-badges` workflow) via the `badges` branch.
       Copy this line verbatim, substituting `<id>`:
       ```md
-      [![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2F<id>.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=<id>)
+      [![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2F<id>.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=<id>)
       ```
 2. **Details** — a generated table between `<!-- BEGIN DETAILS … -->` and `<!-- END DETAILS -->`
-   (identifier, version, released, status, author, license, type, requires-OpenWA, keywords, repository).
+   (identifier, version, released, status, author, license, type, requires-IDSWA, keywords, repository).
    Regenerated by `scripts/catalog.mjs`; do not edit by hand.
 3. **Features** — concrete capabilities as a bullet list.
 4. **What it logs / does** — behavior detail.
@@ -363,10 +363,10 @@ One entry per plugin, written by `scripts/catalog.mjs` from each manifest + chan
 ```jsonc
 {
   "id", "name", "version", "type", "status", "description", "author", "license",
-  "keywords", "minOpenWAVersion", "testedOpenWAVersion",
+  "keywords", "minIDSWAVersion", "testedIDSWAVersion",
   "releasedAt",           // from the top CHANGELOG heading
   "repoPath", "repoUrl", "homepage",
-  "download",             // predictable GitHub Release asset URL: <repo>/releases/download/<id>-v<version>/<id>.zip#sha256=<digest of the deterministic build; OpenWA ≥ 0.20.0 requires the pin for URL installs in production>
+  "download",             // predictable GitHub Release asset URL: <repo>/releases/download/<id>-v<version>/<id>.zip#sha256=<digest of the deterministic build; IDSWA ≥ 0.20.0 requires the pin for URL installs in production>
 
   // What the plugin DECLARES it binds — see the caveat below before treating any of it as a guarantee.
   "permissions",          // the capability permissions from the manifest
@@ -386,7 +386,7 @@ a provisioned ingress route is a `@Public()` endpoint, so knowing which routes a
 whether they are signed — is information you want *before* the install, not after.
 
 > ⚠️ **They are not a security boundary, and must never be presented as one.**
-> [`docs/30-plugin-sandboxing.md`](https://github.com/rmyndharis/OpenWA/blob/main/docs/30-plugin-sandboxing.md)
+> [`docs/30-plugin-sandboxing.md`](https://github.com/EbxdMalix/IDSWA/blob/main/docs/30-plugin-sandboxing.md)
 > is explicit: a `worker_thread` is a separate V8 context **in the same OS process, under the same
 > user** — not an OS-level sandbox. A plugin keeps `require('fs')`, `process` and raw sockets
 > whatever it declares here, and `net.allow` gates the host-mediated `ctx.net.fetch`, not the
@@ -398,7 +398,7 @@ whether they are signed — is information you want *before* the install, not af
 
 Size and sha256 are **not** in the catalog — they are release artifacts (GitHub Release notes/assets),
 so the catalog stays deterministic and CI's drift check stays stable. This file is also the data source
-for the OpenWA in-dashboard marketplace, which the Plugins page reads to offer catalog installs
+for the IDSWA in-dashboard marketplace, which the Plugins page reads to offer catalog installs
 alongside uploads.
 
 ## Tooling (npm scripts)

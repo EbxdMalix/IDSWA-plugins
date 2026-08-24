@@ -5,21 +5,21 @@
   "type": "extension",
   "main": "dist/index.js",
   "description": "Auto-translates group messages between participants' languages via a LibreTranslate backend. Configure in-chat with /tr commands. Admin-gated; disabled until enabled.",
-  "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+  "author": "malikebad <ebadm7251@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/group-translate",
-  "repository": "https://github.com/rmyndharis/OpenWA-plugins",
+  "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/group-translate",
+  "repository": "https://github.com/EbxdMalix/IDSWA-plugins",
   "keywords": [
     "translation",
     "libretranslate",
     "i18n",
     "groups",
     "whatsapp",
-    "openwa"
+    "idswa"
   ],
   "status": "stable",
-  "minOpenWAVersion": "0.7.0",
-  "testedOpenWAVersion": "0.23.0",
+  "minIDSWAVersion": "0.7.0",
+  "testedIDSWAVersion": "0.23.0",
   "provides": [
     "translation"
   ],
@@ -53,7 +53,7 @@
         "title": "LibreTranslate URL",
         "default": "http://localhost:7001",
         "required": true,
-        "description": "Base URL of your LibreTranslate instance. A loopback URL (localhost / 127.0.0.1, any port) is allowed out of the box; any other host is admitted only over https, via net.allowConfigHosts. A loopback or otherwise private address additionally requires SSRF_ALLOWED_HOSTS on the OpenWA host."
+        "description": "Base URL of your LibreTranslate instance. A loopback URL (localhost / 127.0.0.1, any port) is allowed out of the box; any other host is admitted only over https, via net.allowConfigHosts. A loopback or otherwise private address additionally requires SSRF_ALLOWED_HOSTS on the IDSWA host."
       },
       "libretranslateApiKey": {
         "type": "string",

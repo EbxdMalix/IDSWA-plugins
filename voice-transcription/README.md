@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.7.0-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fvoice-transcription.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=voice-transcription)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.7.0-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fvoice-transcription.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=voice-transcription)
 
 ## Details
 
@@ -17,12 +17,12 @@
 | **Version** | 1.2.7 |
 | **Released** | 2026-08-20 |
 | **Status** | beta |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.7.0 (tested 0.23.0) |
-| **Keywords** | transcription, speech-to-text, stt, whisper, voice, audio, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/voice-transcription](https://github.com/rmyndharis/OpenWA-plugins/tree/main/voice-transcription) |
+| **Requires IDSWA** | ≥ 0.7.0 (tested 0.23.0) |
+| **Keywords** | transcription, speech-to-text, stt, whisper, voice, audio, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/voice-transcription](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/voice-transcription) |
 <!-- END DETAILS -->
 
 ## Features
@@ -32,7 +32,7 @@
   replies into the contact's chat, so the transcript reaches your bot/AI without polluting the conversation
   or leaking back to the sender.
 - **Never blocks delivery.** The hook returns immediately; STT runs as an un-awaited task. A slow or long
-  transcription cannot delay (or drop) WhatsApp message delivery, and it is not bound by OpenWA's 5-second
+  transcription cannot delay (or drop) WhatsApp message delivery, and it is not bound by IDSWA's 5-second
   plugin-hook budget.
 - **Bring your own STT.** Any OpenAI-compatible `/v1/audio/transcriptions` endpoint: self-hosted
   [Speaches](https://github.com/speaches-ai/speaches)/faster-whisper (free, local, decodes WhatsApp
@@ -42,8 +42,8 @@
 - **Optional in-chat delivery.** `chatDelivery` can also post the transcript into WhatsApp (`self` notes it to
   your own number; `reply` quote-replies to the sender). Off by default; webhook delivery is optional too
   (chat-only is supported).
-- **Signed webhooks.** When a delivery secret is set, the body is HMAC-SHA256 signed in `X-OpenWA-Signature`
-  (same scheme as OpenWA's core webhooks), so existing verification reuses the same check.
+- **Signed webhooks.** When a delivery secret is set, the body is HMAC-SHA256 signed in `X-IDSWA-Signature`
+  (same scheme as IDSWA's core webhooks), so existing verification reuses the same check.
 - **Cost & abuse guards.** Exact `maxSizeBytes` skip, a best-effort per-session hourly cap, a message-type
   filter (voice only by default), a best-effort idempotency guard against engine re-fires, and an STT
   circuit breaker that backs off a degraded backend.
@@ -90,7 +90,7 @@ out of order — do not assume ordering).
    which is what covers a plain-`http` local backend (config-derived hosts are https-only).
 3. **For a localhost STT/delivery target** — any self-hosted Speaches/faster-whisper deployment; a hosted
    Groq/OpenAI endpoint needs nothing here — also set the environment variable `SSRF_ALLOWED_HOSTS` on the
-   OpenWA host itself (not in this plugin's config; the SSRF guard blocks loopback by default), e.g.
+   IDSWA host itself (not in this plugin's config; the SSRF guard blocks loopback by default), e.g.
    `SSRF_ALLOWED_HOSTS=127.0.0.1,localhost`. Prefer a literal `http://127.0.0.1:PORT` target (nothing to
    DNS-rebind).
 4. **Stand up your delivery endpoint** (an n8n webhook, a Worker, your bot) and put its URL in
@@ -101,16 +101,16 @@ out of order — do not assume ordering).
 ```bash
 # Upload the packaged zip
 curl -X POST http://localhost:2785/api/plugins/install \
-  -H "X-API-Key: $OPENWA_API_KEY" -F "file=@voice-transcription.zip"
+  -H "X-API-Key: $IDSWA_API_KEY" -F "file=@voice-transcription.zip"
 
 # Configure (per session, or '*' for all)
 curl -X PUT http://localhost:2785/api/plugins/voice-transcription/config \
-  -H "X-API-Key: $OPENWA_API_KEY" -H 'Content-Type: application/json' \
+  -H "X-API-Key: $IDSWA_API_KEY" -H 'Content-Type: application/json' \
   -d '{ "config": { "sttBaseUrl": "http://127.0.0.1:8000", "model": "small", "deliveryWebhookUrl": "http://127.0.0.1:5678/webhook/transcript" } }'
 
 # Enable
 curl -X POST http://localhost:2785/api/plugins/voice-transcription/enable \
-  -H "X-API-Key: $OPENWA_API_KEY"
+  -H "X-API-Key: $IDSWA_API_KEY"
 ```
 
 ## Configuration
@@ -127,7 +127,7 @@ curl -X POST http://localhost:2785/api/plugins/voice-transcription/enable \
 | `maxSizeBytes` | no | `16777216` | Skip audio larger than this (exact cost guard). |
 | `maxPerHour` | no | `60` | Best-effort per-session hourly transcription cap. |
 | `deliveryWebhookUrl` | cond. | — | Endpoint receiving the `message.transcription` event. Must be https, and is then allowed automatically. Optional if you only use `chatDelivery`. |
-| `deliverySecret` | no | — | Optional. HMAC-SHA256 signs the body in `X-OpenWA-Signature: sha256=<hex>` (same as core webhooks). Stored redacted. |
+| `deliverySecret` | no | — | Optional. HMAC-SHA256 signs the body in `X-IDSWA-Signature: sha256=<hex>` (same as core webhooks). Stored redacted. |
 | `deliveryTimeoutMs` | no | `5000` | Delivery POST timeout. |
 | `chatDelivery` | no | `off` | Also post the transcript into WhatsApp: `off` (webhook only) · `self` (note to your own number) · `reply` (quote-reply to the sender — visible to them). **In a group, `reply` posts to the whole group**, so every member reads the contents of the voice note. |
 
@@ -164,7 +164,7 @@ single WhatsApp session via the dashboard's session scope).
   and an API key, so egress stays pinned to the hosts you named. A config-derived host must be plain https
   with no embedded credentials, which is what keeps that convenience from widening the allowlist.
 - **Secrets** are stored redacted. `sttApiKey` is sent as a Bearer token only to the STT host;
-  `deliverySecret` is **never transmitted** — it HMAC-signs the body (`X-OpenWA-Signature`).
+  `deliverySecret` is **never transmitted** — it HMAC-signs the body (`X-IDSWA-Signature`).
 - **Treat the transcript as untrusted.** `transcription.text` is attacker-controlled speech — the event
   marks it `untrusted: true`. A downstream LLM auto-responder MUST place it in a **user** role, never a
   system/trusted context (a caller can *speak* injection instructions a typist never would).

@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto';
-import type { PluginNetRequestInit, PluginNetResponse } from '../types/openwa';
+import type { PluginNetRequestInit, PluginNetResponse } from '../types/idswa';
 import type { TypebotConfig, NormalizedResponse, Bubble, InputSpec, ChoiceItem } from './typebot-types.ts';
 import { buildMultipartBody } from './multipart.ts';
 

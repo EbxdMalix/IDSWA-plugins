@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = resolve(process.argv[2] ?? join(ROOT, '.badges-out'));
-const REPO = process.env.GITHUB_REPOSITORY ?? 'rmyndharis/OpenWA-plugins';
+const REPO = process.env.GITHUB_REPOSITORY ?? 'EbxdMalix/IDSWA-plugins';
 const SKIP = new Set(['node_modules', 'scripts', 'docs', '.git', '.github', '.superpowers', 'dist', '.remember']);
 
 const pluginIds = readdirSync(ROOT)
@@ -19,7 +19,7 @@ const pluginIds = readdirSync(ROOT)
   .filter((name) => existsSync(join(ROOT, name, 'manifest.json')))
   .sort();
 
-const headers = { Accept: 'application/vnd.github+json', 'User-Agent': 'openwa-plugins-download-badges' };
+const headers = { Accept: 'application/vnd.github+json', 'User-Agent': 'idswa-plugins-download-badges' };
 if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
 
 async function fetchAllReleases() {

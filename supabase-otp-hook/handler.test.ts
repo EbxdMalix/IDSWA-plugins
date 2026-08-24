@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { WebhookRequest } from '../types/openwa';
+import type { WebhookRequest } from '../types/idswa';
 import { handleSendSms, readConfig, phoneToChatId, composeMessage } from './handler.ts';
 
 interface SentCall {

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import type { SttResult, SttProvider } from './openai-stt.client.ts';
 import type { TranscriptionPayload } from './webhook.delivery.ts';
 import {

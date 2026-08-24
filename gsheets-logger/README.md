@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.7.0-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fgsheets-logger.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=gsheets-logger)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.7.0-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fgsheets-logger.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=gsheets-logger)
 
 ## Details
 
@@ -17,15 +17,15 @@
 | **Version** | 0.3.7 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.7.0 (tested 0.23.0) |
-| **Keywords** | google-sheets, logging, audit, crm, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/gsheets-logger](https://github.com/rmyndharis/OpenWA-plugins/tree/main/gsheets-logger) |
+| **Requires IDSWA** | ≥ 0.7.0 (tested 0.23.0) |
+| **Keywords** | google-sheets, logging, audit, crm, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/gsheets-logger](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/gsheets-logger) |
 <!-- END DETAILS -->
 
-The installed version is also visible in the OpenWA dashboard Plugins list, via
+The installed version is also visible in the IDSWA dashboard Plugins list, via
 `GET /api/plugins/gsheets-logger`, and at runtime in the enable log line and `healthCheck`
 (`GET /api/plugins/gsheets-logger/health` → `"v<version> — N rows buffered"`).
 
@@ -55,14 +55,14 @@ One row per event, columns:
 timestamp | sessionId | event | direction | chatId | from | to | senderName | isGroup | type | body | messageId | ackStatus | error
 ```
 
-`message:ack` rows fill the `messageId` and `ackStatus` columns and require OpenWA ≥ v0.6.1 (older
+`message:ack` rows fill the `messageId` and `ackStatus` columns and require IDSWA ≥ v0.6.1 (older
 builds never emitted the hook).
 
 ## Setup
 
 The plugin signs in as a Google **service account** — no interactive login and no OAuth consent screen.
 Configure it once and it logs forever. You'll need a Google account, a Google Sheet to write to, and your
-OpenWA instance running. Budget about five minutes.
+IDSWA instance running. Budget about five minutes.
 
 > [!IMPORTANT]
 > **Setup grants TWO separate authorizations, and confusing them is the single most common mistake.**
@@ -99,7 +99,7 @@ rows.
 ### Step 3 — Create a service account and download its key
 
 Go to **APIs & Services → Credentials → Create credentials → Service account**. Name it (e.g.
-`openwa-logger`), click **Create and continue**, then **Done** — a project role is **not** required
+`idswa-logger`), click **Create and continue**, then **Done** — a project role is **not** required
 (access comes from sharing the sheet in Step 5, not from an IAM role).
 
 Open the new service account → **Keys → Add key → Create new key → JSON → Create**. A `.json` file
@@ -124,7 +124,7 @@ https://docs.google.com/spreadsheets/d/THIS_PART_IS_THE_ID/edit
 ### Step 5 — Share the spreadsheet with the service account
 
 Open the JSON from Step 3 and copy its **`client_email`** value (it looks like
-`openwa-logger@your-project.iam.gserviceaccount.com`). In your sheet, click **Share**, paste that email,
+`idswa-logger@your-project.iam.gserviceaccount.com`). In your sheet, click **Share**, paste that email,
 set the role to **Editor**, and confirm.
 
 > [!IMPORTANT]
@@ -134,7 +134,7 @@ set the role to **Editor**, and confirm.
 
 ### Step 6 — Configure and enable the plugin
 
-In the OpenWA dashboard, open **Plugins → Configure** for Google Sheets Logger (or use the `PUT …/config`
+In the IDSWA dashboard, open **Plugins → Configure** for Google Sheets Logger (or use the `PUT …/config`
 call in [Install](#install)) and set:
 
 - **`serviceAccountJson`** — the **entire** contents of the JSON file from Step 3.
@@ -155,7 +155,7 @@ Send yourself a WhatsApp message, then confirm the pipeline end to end:
    `gsheets-logger: flush failed, will retry next tick` with Google's exact reason. Tail your logs and
    grep for the plugin:
    ```bash
-   docker logs --since 5m <openwa-container> 2>&1 | grep -i gsheets
+   docker logs --since 5m <idswa-container> 2>&1 | grep -i gsheets
    ```
    No `flush failed` lines means the writes are landing.
 3. **Rows appear in the sheet** within one flush interval (~5s). Buffered rows are retried automatically,
@@ -176,18 +176,18 @@ Send yourself a WhatsApp message, then confirm the pipeline end to end:
 ```bash
 node package.mjs gsheets-logger    # produces gsheets-logger.zip at the repo root
 
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" -F "file=@gsheets-logger.zip"
 
-curl -X PUT "https://your-openwa-host/api/plugins/gsheets-logger/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/gsheets-logger/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" -H "Content-Type: application/json" \
   -d '{ "config": { "spreadsheetId": "<ID>", "serviceAccountJson": "<paste JSON>", "sheetTab": "Logs" } }'
 
-curl -X POST "https://your-openwa-host/api/plugins/gsheets-logger/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/gsheets-logger/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
-Or download the packaged `.zip` from [Releases](https://github.com/rmyndharis/OpenWA-plugins/releases)
+Or download the packaged `.zip` from [Releases](https://github.com/EbxdMalix/IDSWA-plugins/releases)
 and upload it in the dashboard **Plugins → Install**.
 
 ## Configuration
@@ -204,12 +204,12 @@ The target tab must exist, **with a header row of your choosing** — the plugin
 
 ## Compatibility
 
-External plugins run **sandboxed in a worker thread** (since OpenWA **v0.6.0**). Requires OpenWA
+External plugins run **sandboxed in a worker thread** (since IDSWA **v0.6.0**). Requires IDSWA
 **≥ 0.7.0** — all outbound HTTP (OAuth token + Sheets append) goes through the host-proxied,
 SSRF-guarded `ctx.net.fetch` introduced in v0.7, allowlisted to the two fixed Google hosts. Two further
 capabilities are version-dependent:
 
-- **`message:ack` rows** require OpenWA **≥ v0.6.1** (#427). On v0.6.0 the hook was declared but never
+- **`message:ack` rows** require IDSWA **≥ v0.6.1** (#427). On v0.6.0 the hook was declared but never
   fired, so ack rows are absent.
 - **Live config updates** (a `PUT …/config` reaching the running plugin) and **graceful-shutdown buffer
   flush** require the sandbox lifecycle follow-ups (#430), **unreleased** (first release after v0.6.1). On
@@ -225,7 +225,7 @@ honored — the buffer cannot attribute a row to a session at flush time, so rou
 design-level change, not a config one.
 
 If you need to log different sessions to different sheets, run **one plugin instance per session** (bind
-each to a single WhatsApp session via the dashboard's session scope), or run multiple OpenWA instances.
+each to a single WhatsApp session via the dashboard's session scope), or run multiple IDSWA instances.
 Per-session multi-sink logging is a roadmap item if a concrete need emerges.
 
 ## Security
@@ -242,7 +242,7 @@ single quote (`'`) when they start with a formula trigger:
 Every cell is also capped at 50 000 characters (Google Sheets' per-cell limit), so a single oversized
 message can't fail an append batch and stall logging.
 
-The service-account JSON is marked `secret` in the config schema, so OpenWA masks it on read.
+The service-account JSON is marked `secret` in the config schema, so IDSWA masks it on read.
 
 ## Changelog
 
@@ -250,4 +250,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](../LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](../LICENSE) © malikebad & IDSWA Contributors.

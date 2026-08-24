@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginContext, HookHandler, HookContext } from '../types/openwa';
+import type { PluginContext, HookHandler, HookContext } from '../types/idswa';
 import Plugin, { readConfig } from './index.ts';
 
 test('readConfig: defaults, normalization, and fail-fast', () => {

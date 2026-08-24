@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.6.1-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Ffaq-bot.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=faq-bot)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.6.1-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Ffaq-bot.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=faq-bot)
 
 ## Details
 
@@ -17,12 +17,12 @@
 | **Version** | 0.2.5 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.6.1 (tested 0.23.0) |
-| **Keywords** | faq, auto-reply, chatbot, support, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/faq-bot](https://github.com/rmyndharis/OpenWA-plugins/tree/main/faq-bot) |
+| **Requires IDSWA** | ≥ 0.6.1 (tested 0.23.0) |
+| **Keywords** | faq, auto-reply, chatbot, support, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/faq-bot](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/faq-bot) |
 <!-- END DETAILS -->
 
 ## Features
@@ -51,7 +51,7 @@
 
 ## Setup
 
-1. Have OpenWA **≥ 0.6.1** running with a logged-in WhatsApp session.
+1. Have IDSWA **≥ 0.6.1** running with a logged-in WhatsApp session.
 2. Install and enable the plugin (see [Install](#install)).
 3. Add your FAQ rules (see [Configuration](#configuration)).
 
@@ -60,18 +60,18 @@
 ```bash
 node package.mjs faq-bot    # produces faq-bot.zip at the repo root
 
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" -F "file=@faq-bot.zip"
 
-curl -X PUT "https://your-openwa-host/api/plugins/faq-bot/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/faq-bot/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" -H "Content-Type: application/json" \
   -d '{ "config": { "rules": "[{\"mode\":\"contains\",\"pattern\":\"harga\",\"reply\":\"Harga mulai 100rb\"}]" } }'
 
-curl -X POST "https://your-openwa-host/api/plugins/faq-bot/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/faq-bot/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
-Or download the packaged `.zip` from [Releases](https://github.com/rmyndharis/OpenWA-plugins/releases)
+Or download the packaged `.zip` from [Releases](https://github.com/EbxdMalix/IDSWA-plugins/releases)
 and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
 
 ## Configuration
@@ -85,7 +85,7 @@ and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
 
 ## Compatibility
 
-Targets OpenWA **≥ 0.6.1** (sandboxed plugin runtime). Live config edits (`PUT …/config`) apply
+Targets IDSWA **≥ 0.6.1** (sandboxed plugin runtime). Live config edits (`PUT …/config`) apply
 immediately on builds that forward `onConfigChange` to sandboxed plugins (the #430 follow-ups);
 on v0.6.0/v0.6.1 a disable + re-enable is needed after changing rules.
 
@@ -119,4 +119,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](../LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](../LICENSE) © malikebad & IDSWA Contributors.

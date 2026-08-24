@@ -1,4 +1,4 @@
-import type { PluginStorage, PluginMappingsCapability, IncomingMessage } from '../types/openwa';
+import type { PluginStorage, PluginMappingsCapability, IncomingMessage } from '../types/idswa';
 import { KeyedAsyncLock } from './chat-lock.ts';
 
 // A failed inbound relay held for retry. The full message (incl. media) is stored so the retry re-posts

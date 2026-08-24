@@ -12,19 +12,19 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.2.4] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.2.3] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.2.2] — 2026-08-15
 
@@ -46,7 +46,7 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -59,7 +59,7 @@ is updated to match.
 
 ### Verified
 
-- **Confirmed against a live OpenWA 0.12.1 host**, with a connected WhatsApp session, this plugin
+- **Confirmed against a live IDSWA 0.12.1 host**, with a connected WhatsApp session, this plugin
   enabled alongside four other responder plugins (including chat-flow and after-hours) and driven by
   real messages from a second connected WhatsApp number. A message matching a configured keyword rule
   was answered by this plugin and by nothing else, confirming the 0.2.0 message-claiming and
@@ -181,7 +181,7 @@ is updated to match.
 
 ## [0.1.0] — 2026-06-23
 
-First release. Built against OpenWA v0.6.1.
+First release. Built against IDSWA v0.6.1.
 
 ### Added
 

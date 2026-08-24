@@ -96,7 +96,7 @@ test('onDisable awaits an in-flight failing flush and persists the restored rows
   assert.ok(!setCalls.some((c) => c.length === 0), 'must never persist an empty buffer while rows are unsent');
 });
 
-// onConfigChange now fires for sandboxed plugins (OpenWA #430), so rows buffered before a
+// onConfigChange now fires for sandboxed plugins (IDSWA #430), so rows buffered before a
 // spreadsheet/credential rotation must drain to the OLD client before the swap, not the new sheet.
 test('onConfigChange drains the buffer to the old client before swapping', async () => {
   const logger = new GSheetsLogger();

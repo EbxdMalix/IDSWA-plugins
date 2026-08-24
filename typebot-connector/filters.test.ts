@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import { inScope, sessionKey } from './filters.ts';
 
 const base = (over: Partial<IncomingMessage> = {}): IncomingMessage =>

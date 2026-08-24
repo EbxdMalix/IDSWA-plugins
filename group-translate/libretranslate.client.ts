@@ -1,5 +1,5 @@
 import type { Translator, DetectResult, TranslationLogger } from './core/ports';
-import type { PluginNetCapability } from '../types/openwa';
+import type { PluginNetCapability } from '../types/idswa';
 
 export interface LibreTranslateOptions {
   url: string;

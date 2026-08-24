@@ -82,7 +82,7 @@ jobs:
           ' "$PLUGIN_ID/CHANGELOG.md" > notes.md
           {
             echo ""
-            echo "**Install:** download \`$PLUGIN_ID.zip\` below and upload it in the OpenWA dashboard (Plugins → Install). For install-from-URL on a production host (OpenWA ≥ 0.20.0), append \`#sha256=<digest below>\` to the asset URL."
+            echo "**Install:** download \`$PLUGIN_ID.zip\` below and upload it in the IDSWA dashboard (Plugins → Install). For install-from-URL on a production host (IDSWA ≥ 0.20.0), append \`#sha256=<digest below>\` to the asset URL."
             echo ""
             echo "SHA-256: \`$(cut -d' ' -f1 "$PLUGIN_ID.zip.sha256")\`"
           } >> notes.md

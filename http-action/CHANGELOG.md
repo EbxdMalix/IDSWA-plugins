@@ -9,19 +9,19 @@ and the top entry's version must match `manifest.json`.
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [0.2.5] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [0.2.4] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [0.2.3] — 2026-08-15
 
@@ -35,7 +35,7 @@ and the top entry's version must match `manifest.json`.
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -47,7 +47,7 @@ and the top entry's version must match `manifest.json`.
 
 - **Declared the `storage:use` permission.** Answered commands are recorded in plugin storage for
   three days, and that record is what makes a command idempotent: if the host redelivers a message,
-  the marker is what stops the REST call being made a second time. OpenWA is moving `ctx.storage`
+  the marker is what stops the REST call being made a second time. IDSWA is moving `ctx.storage`
   behind a permission the manifest has to declare, and without it those markers cannot be written or
   read. This plugin's job is to cause side effects in someone else's system, so losing idempotency
   does not degrade the plugin — it means one WhatsApp command can create two orders, two tickets, or
@@ -59,7 +59,7 @@ and the top entry's version must match `manifest.json`.
 ### Changed
 
 - **Status promoted from `beta` to `stable`.** No behaviour changed in this release. A manual install
-  smoke on a real OpenWA 0.12.1 host — the one check that cannot be automated — has now been run in
+  smoke on a real IDSWA 0.12.1 host — the one check that cannot be automated — has now been run in
   full and passed: install from package, configure, and enable; a POST command with path and JSON-body
   templating (reply carried the templated body, the sender's phone number resolved correctly, the
   configured bearer credential reached the upstream); a command against an upstream 404 (the configured
@@ -120,7 +120,7 @@ and the top entry's version must match `manifest.json`.
 ## [0.1.1] — 2026-07-27
 
 ### Fixed
-- **`minOpenWAVersion` corrected from 0.8.7 to 0.8.0.** Both capabilities http-action relies on — `conversation:send` and `net.allowConfigHosts` — shipped in OpenWA 0.8.0 (the Integration Fabric release). The 0.8.7 floor was overstated and refused an install on servers that would in fact run the plugin correctly.
+- **`minIDSWAVersion` corrected from 0.8.7 to 0.8.0.** Both capabilities http-action relies on — `conversation:send` and `net.allowConfigHosts` — shipped in IDSWA 0.8.0 (the Integration Fabric release). The 0.8.7 floor was overstated and refused an install on servers that would in fact run the plugin correctly.
 
 ## [0.1.0] — 2026-07-11
 

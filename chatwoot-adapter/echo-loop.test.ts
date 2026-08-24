@@ -10,7 +10,7 @@ import type {
   WebhookRequest,
   PluginStorage,
   PluginMappingsCapability,
-} from '../types/openwa';
+} from '../types/idswa';
 
 // The WhatsApp -> Chatwoot -> WhatsApp echo loop (#615 regression).
 //

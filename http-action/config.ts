@@ -1,4 +1,4 @@
-// Config parsing + validation for HTTP Action Bot. Pure (no ctx) so it tests without OpenWA.
+// Config parsing + validation for HTTP Action Bot. Pure (no ctx) so it tests without IDSWA.
 //
 // Security-critical: WhatsApp message text is attacker-controlled, so every value the plugin later
 // interpolates into an outbound request is bounded HERE — fixed https origin (an allowConfigHosts key,

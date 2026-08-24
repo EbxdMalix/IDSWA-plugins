@@ -1,4 +1,4 @@
-import type { HookContext, IncomingMessage } from '../types/openwa';
+import type { HookContext, IncomingMessage } from '../types/idswa';
 
 export const COLUMNS = [
   'timestamp', 'sessionId', 'event', 'direction', 'chatId', 'from', 'to',

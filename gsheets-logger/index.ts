@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext, HookContext, HookEvent } from '../types/openwa';
+import type { IPlugin, PluginContext, HookContext, HookEvent } from '../types/idswa';
 import { SheetsClient, type ServiceAccount } from './sheets-client.ts';
 import { buildRow } from './row.ts';
 

@@ -25,8 +25,8 @@ test('a configUi entry is normalised before it is judged, not rejected for spell
 
 test('a configUi entry that climbs out of the plugin directory is refused', () => {
   // The packager expands a directory entry recursively, so `..` reaches the repo root: an entry of
-  // '../types/openwa.d.ts' archives every sibling plugin and all of node_modules.
-  for (const escape of ['../types/openwa.d.ts', '..', 'config/../../secrets', '/etc/passwd', '/', '..\\secrets', '\\\\server\\share']) {
+  // '../types/idswa.d.ts' archives every sibling plugin and all of node_modules.
+  for (const escape of ['../types/idswa.d.ts', '..', 'config/../../secrets', '/etc/passwd', '/', '..\\secrets', '\\\\server\\share']) {
     assert.throws(() => configUiMember(escape), /must stay inside the plugin directory/, `expected "${escape}" to be refused`);
   }
 });

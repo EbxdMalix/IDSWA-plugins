@@ -6,7 +6,7 @@ import type {
   HookResult,
   IncomingMessage,
   PluginNetResponse,
-} from "../types/openwa";
+} from "../types/idswa";
 import { VoiceTranscriptionPlugin } from "./index.ts";
 
 function voiceMsg(): IncomingMessage {

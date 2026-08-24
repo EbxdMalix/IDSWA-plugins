@@ -12,19 +12,19 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Verified against OpenWA v0.23.0** (testedOpenWAVersion 0.22.0 → 0.23.0).
+- **Verified against IDSWA v0.23.0** (testedIDSWAVersion 0.22.0 → 0.23.0).
 
 ## [1.1.5] - 2026-08-19
 
 ### Changed
 
-- **Verified against OpenWA v0.22.0** (testedOpenWAVersion 0.20.0 → 0.22.0).
+- **Verified against IDSWA v0.22.0** (testedIDSWAVersion 0.20.0 → 0.22.0).
 
 ## [1.1.4] - 2026-08-16
 
 ### Changed
 
-- **Verified against OpenWA v0.20.0** (testedOpenWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
+- **Verified against IDSWA v0.20.0** (testedIDSWAVersion 0.19.0 → 0.20.0); the catalog download URL now pins #sha256= for production installs.
 
 ## [1.1.3] — 2026-08-15
 
@@ -38,7 +38,7 @@ The version here always matches `manifest.json`'s `version`.
 
 ### Changed
 
-- **Compatibility re-verified against OpenWA v0.19.0** (testedOpenWAVersion 0.14.0 → 0.19.0). The
+- **Compatibility re-verified against IDSWA v0.19.0** (testedIDSWAVersion 0.14.0 → 0.19.0). The
   manifest passes the v0.19.0 host's load-time validation (manifest, ingress and main-entry
   checks) and the built bundle loads under the loader contract. No capability surface this plugin
   uses changed between 0.14 and 0.19; the v0.19 breaking changes are host-side (API key length,
@@ -49,7 +49,7 @@ The version here always matches `manifest.json`'s `version`.
 ### Changed
 
 - **Declared the `storage:use` permission.** This plugin is a state machine, and its entire state —
-  where each conversation currently sits in the menu tree — lives in plugin storage. OpenWA is moving
+  where each conversation currently sits in the menu tree — lives in plugin storage. IDSWA is moving
   `ctx.storage` behind a permission the manifest has to declare, and without it there is nothing left
   to run on: a contact would get the greeting and the top-level menu, then have their answer read as
   another first message and be sent the same greeting again. This is the one plugin in the catalog for
@@ -63,7 +63,7 @@ is updated to match.
 
 ### Verified
 
-- **Confirmed against a live OpenWA 0.12.1 host**, with a connected WhatsApp session, this plugin
+- **Confirmed against a live IDSWA 0.12.1 host**, with a connected WhatsApp session, this plugin
   enabled alongside four other responder plugins (including faq-bot and after-hours) and driven by real
   messages from a second connected WhatsApp number. A message matching the configured trigger word
   started the menu flow, answered by this plugin and by nothing else — and once the contact was inside
@@ -110,7 +110,7 @@ is updated to match.
 
 - **The editor follows the dashboard's dark theme.** It was always light, so on a dark dashboard it
   appeared as a bright panel in the middle of the dialog. It now uses whichever theme the dashboard
-  reports (OpenWA 0.10.5+), and falls back to the operating system preference on older versions.
+  reports (IDSWA 0.10.5+), and falls back to the operating system preference on older versions.
 
 ## [1.0.6] — 2026-07-18
 
@@ -179,7 +179,7 @@ is updated to match.
 
 ## [1.0.0] — 2026-06-23
 
-First release. Built against the OpenWA v0.7 plugin contract.
+First release. Built against the IDSWA v0.7 plugin contract.
 
 ### Added
 

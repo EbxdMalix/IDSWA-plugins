@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext, HookContext, IncomingMessage } from '../types/openwa';
+import type { IPlugin, PluginContext, HookContext, IncomingMessage } from '../types/idswa';
 import { parseSchedule, assertValidTimezone, isAfterHours, Schedule } from './schedule.ts';
 import { allowCooldown } from './cooldown.ts';
 

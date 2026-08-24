@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginContext } from '../types/openwa';
+import type { PluginContext } from '../types/idswa';
 import { FlowEngine, SessionFlow } from './flow-engine.ts';
 
 function makeCtx() {
@@ -213,7 +213,7 @@ test('sweepExpired does not delete a state refreshed between the scan and the de
       set: async () => {},
     },
     logger: { log() {}, debug() {}, warn() {}, error() {} },
-  } as unknown as import('../types/openwa').PluginContext;
+  } as unknown as import('../types/idswa').PluginContext;
   const removed = await FlowEngine.sweepExpired(ctx);
   assert.equal(removed, 0);        // the re-read saw fresh state → the live flow is not wiped
   assert.equal(deleted, false);

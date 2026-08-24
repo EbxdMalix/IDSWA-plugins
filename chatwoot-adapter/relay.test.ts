@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { placeholderFor, resolvePhone } from './relay.ts';
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 
 test('group messages never get a phone, regardless of senderPhone or canonical', () => {
   assert.equal(resolvePhone({ isGroup: true, senderPhone: '+621' }, '621@c.us'), undefined);

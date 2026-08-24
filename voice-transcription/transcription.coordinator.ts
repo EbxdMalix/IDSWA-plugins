@@ -1,4 +1,4 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import type { SttProvider, SttResult } from './openai-stt.client.ts';
 import type { TranscriptDelivery, TranscriptionPayload } from './webhook.delivery.ts';
 

@@ -1,4 +1,4 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 
 // Relay only genuine engine-delivered inbound messages we didn't send ourselves. Groups are gated by
 // relayGroups. Pure — no ctx.
@@ -6,7 +6,7 @@ export function shouldRelayInbound(msg: IncomingMessage, source: string, relayGr
   return source === 'Engine' && !msg.fromMe && !!msg.chatId && (!msg.isGroup || relayGroups);
 }
 
-// Relay the account's OWN outbound sends (composed on a linked phone or via the OpenWA API) so the
+// Relay the account's OWN outbound sends (composed on a linked phone or via the IDSWA API) so the
 // Chatwoot thread mirrors WhatsApp (#615). The mirror of shouldRelayInbound with fromMe===true. The
 // adapter's own Chatwoot-agent replies are ALSO fromMe and reach message:sent, but they're excluded
 // out-of-band by the 'wa' send-id echo marker, not here. Pure — no ctx.

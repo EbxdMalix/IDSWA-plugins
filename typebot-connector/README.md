@@ -5,8 +5,8 @@
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.8.2-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Ftypebot-connector.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=typebot-connector)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.8.2-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Ftypebot-connector.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=typebot-connector)
 
 ## Details
 
@@ -17,12 +17,12 @@
 | **Version** | 0.2.6 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.8.2 (tested 0.23.0) |
-| **Keywords** | typebot, chatbot, flow, bot, no-code, two-way, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/typebot-connector](https://github.com/rmyndharis/OpenWA-plugins/tree/main/typebot-connector) |
+| **Requires IDSWA** | ≥ 0.8.2 (tested 0.23.0) |
+| **Keywords** | typebot, chatbot, flow, bot, no-code, two-way, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/typebot-connector](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/typebot-connector) |
 <!-- END DETAILS -->
 
 ## Features
@@ -59,7 +59,7 @@ The same applies to a `choice` step, which arrives as a numbered list the contac
 1. In Typebot, build and **publish** your bot, then copy its **public ID** from the Share settings.
    (Optional: define flow variables named `waNumber`, `waName`, `waChatId` to receive the contact's
    details.)
-2. Install and enable this plugin for your WhatsApp session in OpenWA (see [Install](#install)).
+2. Install and enable this plugin for your WhatsApp session in IDSWA (see [Install](#install)).
 3. Configure (see [Configuration](#configuration)):
    - **Typebot host URL** — `https://typebot.io` for Cloud, or your self-hosted URL.
    - **Typebot public ID** — from step 1.
@@ -73,18 +73,18 @@ The same applies to a `choice` step, which arrives as a numbered list the contac
 ```bash
 node package.mjs typebot-connector    # produces typebot-connector.zip at the repo root
 
-curl -X POST "https://your-openwa-host/api/plugins/install" \
+curl -X POST "https://your-idswa-host/api/plugins/install" \
   -H "X-API-Key: <ADMIN_API_KEY>" -F "file=@typebot-connector.zip"
 
-curl -X PUT "https://your-openwa-host/api/plugins/typebot-connector/config" \
+curl -X PUT "https://your-idswa-host/api/plugins/typebot-connector/config" \
   -H "X-API-Key: <ADMIN_API_KEY>" -H "Content-Type: application/json" \
   -d '{ "config": { "apiHost": "https://typebot.io", "publicId": "<public-id>" } }'
 
-curl -X POST "https://your-openwa-host/api/plugins/typebot-connector/enable" \
+curl -X POST "https://your-idswa-host/api/plugins/typebot-connector/enable" \
   -H "X-API-Key: <ADMIN_API_KEY>"
 ```
 
-Or download the packaged `.zip` from [Releases](https://github.com/rmyndharis/OpenWA-plugins/releases)
+Or download the packaged `.zip` from [Releases](https://github.com/EbxdMalix/IDSWA-plugins/releases)
 and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
 
 ## Configuration
@@ -101,7 +101,7 @@ and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
 
 ## Compatibility
 
-- Targets OpenWA **≥ 0.8.2** — uses the live Typebot Chat API over `ctx.net.fetch`
+- Targets IDSWA **≥ 0.8.2** — uses the live Typebot Chat API over `ctx.net.fetch`
   (`allowConfigHosts` resolves `apiHost`/`mediaHost` from config) and `ctx.conversations.send` for
   outbound media/voice.
 - **Auto-starts every chat in scope** (including groups by default). Don't run another auto-reply /
@@ -111,7 +111,7 @@ and upload it in the dashboard **Plugins → Install** (or the **Catalog** tab).
   tell whose flow it belongs to, and guessing would feed one contact's answer into another's session.
 - `payment` steps and non-renderable embeds can't be shown on WhatsApp and get a short fallback
   message. Streaming AI blocks are resolved server-side into normal text bubbles.
-- **Link bubbles look plainer from OpenWA 0.14.0 on the Baileys engine.** A link bubble and a redirect
+- **Link bubbles look plainer from IDSWA 0.14.0 on the Baileys engine.** A link bubble and a redirect
   step are sent as the bare URL, and WhatsApp used to draw a preview card for them. From 0.14.0 Baileys
   only generates that card when the sender asks for it, and a plugin has no way to ask — so these
   bubbles arrive as plain links. Nothing is lost and every link still works; if the card matters, put
@@ -143,4 +143,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](../LICENSE) © Yudhi Armyndharis & OpenWA Contributors.
+[MIT](../LICENSE) © malikebad & IDSWA Contributors.

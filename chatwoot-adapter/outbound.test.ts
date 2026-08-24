@@ -6,7 +6,7 @@ import { dirname, join } from 'node:path';
 import { handleOutbound, type OutboundDeps } from './outbound.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
 import { MappingStore } from './mapping-store.ts';
-import type { WebhookRequest, PluginStorage, PluginMappingsCapability } from '../types/openwa';
+import type { WebhookRequest, PluginStorage, PluginMappingsCapability } from '../types/idswa';
 
 function req(body: unknown): WebhookRequest {
   const s = JSON.stringify(body);

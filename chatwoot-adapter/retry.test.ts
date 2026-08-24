@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { drainRetries, slimForRetry, RETRY_MAX_MEDIA_B64 } from './retry.ts';
 import { MappingStore } from './mapping-store.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
-import type { PluginStorage, PluginMappingsCapability, IncomingMessage } from '../types/openwa';
+import type { PluginStorage, PluginMappingsCapability, IncomingMessage } from '../types/idswa';
 
 function fakeStorage(): PluginStorage {
   const m = new Map<string, unknown>();

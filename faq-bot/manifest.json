@@ -5,21 +5,21 @@
   "type": "extension",
   "main": "dist/index.js",
   "description": "Auto-replies to inbound WhatsApp messages from configurable FAQ keyword/regex rules.",
-  "author": "Yudhi Armyndharis <yudhi@rmyndharis.com>",
+  "author": "malikebad <ebadm7251@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/rmyndharis/OpenWA-plugins/tree/main/faq-bot",
-  "repository": "https://github.com/rmyndharis/OpenWA-plugins",
+  "homepage": "https://github.com/EbxdMalix/IDSWA-plugins/tree/main/faq-bot",
+  "repository": "https://github.com/EbxdMalix/IDSWA-plugins",
   "keywords": [
     "faq",
     "auto-reply",
     "chatbot",
     "support",
     "whatsapp",
-    "openwa"
+    "idswa"
   ],
   "status": "stable",
-  "minOpenWAVersion": "0.6.1",
-  "testedOpenWAVersion": "0.23.0",
+  "minIDSWAVersion": "0.6.1",
+  "testedIDSWAVersion": "0.23.0",
   "provides": [
     "auto-reply"
   ],
@@ -40,7 +40,7 @@
         "type": "textarea",
         "required": true,
         "title": "Rules (JSON)",
-        "description": "JSON array of { mode: 'contains'|'exact'|'regex', pattern, reply }. Use double quotes. A single object is also accepted. Example: [{\"mode\":\"contains\",\"pattern\":\"openwa\",\"reply\":\"yes?\"}]"
+        "description": "JSON array of { mode: 'contains'|'exact'|'regex', pattern, reply }. Use double quotes. A single object is also accepted. Example: [{\"mode\":\"contains\",\"pattern\":\"idswa\",\"reply\":\"yes?\"}]"
       },
       "fallbackReply": {
         "type": "string",

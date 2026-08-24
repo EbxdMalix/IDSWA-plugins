@@ -1,4 +1,4 @@
-import type { IPlugin, PluginContext, HookContext, IncomingMessage } from '../types/openwa';
+import type { IPlugin, PluginContext, HookContext, IncomingMessage } from '../types/idswa';
 import { parseRules, matchRule, CompiledRule } from './rules.ts';
 import { allowCooldown } from './cooldown.ts';
 
@@ -23,7 +23,7 @@ export function parseConfig(raw: Record<string, unknown>): {
     const detail = err instanceof Error ? err.message : String(err);
     throw new Error(
       `faq-bot: invalid rules — ${detail}. Expected a JSON array like ` +
-        `[{"mode":"contains","pattern":"openwa","reply":"yes?"}] — use double quotes, not single.`,
+        `[{"mode":"contains","pattern":"idswa","reply":"yes?"}] — use double quotes, not single.`,
     );
   }
 

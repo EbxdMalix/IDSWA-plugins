@@ -1,7 +1,7 @@
-// Vendored OpenWA plugin contract. There is no published @openwa SDK package; keep this in sync
-// with the OpenWA version you target. All imports of this module must be `import type`.
+// Vendored IDSWA plugin contract. There is no published @idswa SDK package; keep this in sync
+// with the IDSWA version you target. All imports of this module must be `import type`.
 //
-// Last aligned against OpenWA core v0.20.0 (tag), verified field-by-field against
+// Last aligned against IDSWA core v0.20.0 (tag), verified field-by-field against
 // src/core/plugins/plugin.interfaces.ts, src/core/hooks/hook.interfaces.ts, plugin-net.ts,
 // sandbox/{worker-bootstrap,worker-capability,worker-hooks,worker-webhooks}.ts and
 // src/engine/interfaces/whatsapp-engine.interface.ts. Where this file narrows the host on purpose it
@@ -92,7 +92,7 @@ export interface PluginLogger {
 
 /**
  * Per-plugin key/value storage. Needs the "storage:use" permission — all four verbs assert it, so an
- * undeclared plugin is denied at the first call rather than at load. It was ungated until OpenWA gated
+ * undeclared plugin is denied at the first call rather than at load. It was ungated until IDSWA gated
  * it (core `plugin-capability-context.ts` `buildStorageCapability`); declaring it is inert on an older
  * host, which is why a plugin should declare it now rather than when its host is upgraded.
  *
@@ -147,7 +147,7 @@ export interface PluginEngineReadCapability {
   /**
    * Canonical (neutral) form of a chat id: resolves a `@lid` privacy id to its stable `<phone>@c.us` when
    * the mapping is known, else returns the id unchanged. Lets a plugin key a chat by one identity across
-   * WhatsApp's `@lid` migration (best-effort). Available on OpenWA 0.8.7+.
+   * WhatsApp's `@lid` migration (best-effort). Available on IDSWA 0.8.7+.
    */
   canonicalChatId(sessionId: string, chatId: string): Promise<string>;
 }

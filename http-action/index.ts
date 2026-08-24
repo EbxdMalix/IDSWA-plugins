@@ -1,6 +1,6 @@
 import type {
   IPlugin, PluginContext, HookContext, HookResult, IncomingMessage, ConversationSendEnvelope,
-} from '../types/openwa';
+} from '../types/idswa';
 import { readConfig, type HttpActionConfig } from './config.ts';
 import { phoneFromJid } from './jid.ts';
 import { matchAction } from './matcher.ts';
@@ -17,7 +17,7 @@ const DEFAULT_ERROR = 'Service is temporarily unavailable. Please try again late
 // message addressed to it should never also be answered by a keyword bot or a flow.
 const HOOK_PRIORITY = 70;
 
-/** Dependencies handleMessage needs, injected so the per-message logic tests without OpenWA. */
+/** Dependencies handleMessage needs, injected so the per-message logic tests without IDSWA. */
 export interface HandleDeps {
   cfg: HttpActionConfig;
   fetch: FetchLike;

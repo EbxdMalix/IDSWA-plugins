@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import ChatwootAdapter from './index.ts';
 import { MAX_PENDING_RETRIES, RETRY_INTERVAL_MS } from './retry.ts';
-import type { PluginContext } from '../types/openwa';
+import type { PluginContext } from '../types/idswa';
 
 function fakeCtx(config: Record<string, unknown>) {
   const hooks: string[] = [];

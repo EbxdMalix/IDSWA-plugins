@@ -1,13 +1,13 @@
 # Chatwoot Adapter
 
-> Two-way sync between a WhatsApp session (via OpenWA) and a [Chatwoot](https://www.chatwoot.com/) inbox,
-> with human handover — relay WhatsApp into Chatwoot, send agent replies back, and silence other OpenWA
+> Two-way sync between a WhatsApp session (via IDSWA) and a [Chatwoot](https://www.chatwoot.com/) inbox,
+> with human handover — relay WhatsApp into Chatwoot, send agent replies back, and silence other IDSWA
 > bots on that chat while a human agent is in control.
 
 ![type: extension](https://img.shields.io/badge/type-extension-blue.svg)
 ![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![built for OpenWA](https://img.shields.io/badge/OpenWA-%E2%89%A5%200.8.7-25D366.svg)
-[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Frmyndharis%2FOpenWA-plugins%2Fbadges%2Fdownloads%2Fchatwoot-adapter.json)](https://github.com/rmyndharis/OpenWA-plugins/releases?q=chatwoot-adapter)
+![built for IDSWA](https://img.shields.io/badge/IDSWA-%E2%89%A5%200.8.7-25D366.svg)
+[![downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEbxdMalix%2FIDSWA-plugins%2Fbadges%2Fdownloads%2Fchatwoot-adapter.json)](https://github.com/EbxdMalix/IDSWA-plugins/releases?q=chatwoot-adapter)
 
 ## Details
 
@@ -18,12 +18,12 @@
 | **Version** | 0.9.5 |
 | **Released** | 2026-08-20 |
 | **Status** | stable |
-| **Author** | Yudhi Armyndharis |
+| **Author** | malikebad |
 | **License** | MIT |
 | **Type** | `extension` |
-| **Requires OpenWA** | ≥ 0.8.7 (tested 0.23.0) |
-| **Keywords** | chatwoot, helpdesk, inbox, handover, two-way, agent, whatsapp, openwa |
-| **Repository** | [OpenWA-plugins/chatwoot-adapter](https://github.com/rmyndharis/OpenWA-plugins/tree/main/chatwoot-adapter) |
+| **Requires IDSWA** | ≥ 0.8.7 (tested 0.23.0) |
+| **Keywords** | chatwoot, helpdesk, inbox, handover, two-way, agent, whatsapp, idswa |
+| **Repository** | [IDSWA-plugins/chatwoot-adapter](https://github.com/EbxdMalix/IDSWA-plugins/tree/main/chatwoot-adapter) |
 <!-- END DETAILS -->
 
 ## Features
@@ -32,7 +32,7 @@
   `incoming` messages, with media uploaded as attachments.
 - **Chatwoot → WhatsApp** — agent replies (`outgoing`, non-private) sent back to WhatsApp. The adapter's own
   posts, foreign inboxes, and private notes are never relayed.
-- **Handover** — assigning a human agent in Chatwoot stops other OpenWA bots from auto-replying on that chat;
+- **Handover** — assigning a human agent in Chatwoot stops other IDSWA bots from auto-replying on that chat;
   automation resumes when the conversation is unassigned.
 - **JID-keyed contacts** — Chatwoot contacts are keyed on the WhatsApp JID, so matching is stable across
   WhatsApp's `@lid` migration. A group maps to one synthetic contact with sender-prefixed messages.
@@ -43,22 +43,22 @@
 
 Each minted instance binds one Chatwoot account (its `apiToken` + `accountId` + `inboxId`) to a WhatsApp
 session. Inbound WhatsApp messages are relayed on the `message:received` hook; agent replies and conversation
-status changes arrive on an account-level Chatwoot webhook that OpenWA verifies (HMAC) before the adapter
+status changes arrive on an account-level Chatwoot webhook that IDSWA verifies (HMAC) before the adapter
 sees it.
 
 ## Setup
 
 > **Chatwoot version:** you need Chatwoot **v4.12.0 or newer** — the first release whose account-level
 > webhooks carry a per-webhook secret and a timestamped HMAC signature (`X-Chatwoot-Signature` +
-> `X-Chatwoot-Timestamp`). Older releases send unsigned webhooks, which OpenWA rejects with a 401.
+> `X-Chatwoot-Timestamp`). Older releases send unsigned webhooks, which IDSWA rejects with a 401.
 > Agent-bot / inbox webhooks are **not** supported — use an account-level webhook (Integrations → Webhooks).
 
 1. **Chatwoot — API-channel inbox.** Create an API-channel inbox and note its **inbox ID**.
 2. **Chatwoot — account-level webhook.** Integrations → Webhooks → add a webhook subscribed to
    `message_created` and `conversation_updated`; copy the webhook **secret** shown on the edit form.
    Chatwoot generates this secret itself and won't accept a custom one — so it must be copied **into**
-   OpenWA (the reverse direction is impossible).
-3. **OpenWA — mint an instance with that secret.** OpenWA verifies every webhook delivery against the
+   IDSWA (the reverse direction is impossible).
+3. **IDSWA — mint an instance with that secret.** IDSWA verifies every webhook delivery against the
    instance's ingress secret, so it must equal the Chatwoot secret from step 2. Mint via the REST API
    (the only path that accepts a secret today):
 
@@ -90,7 +90,7 @@ sees it.
 
 ## Install
 
-**Option A — dashboard.** Download `chatwoot-adapter.zip` from the [Releases page](https://github.com/rmyndharis/OpenWA-plugins/releases), then dashboard → Plugins → Install → upload.
+**Option A — dashboard.** Download `chatwoot-adapter.zip` from the [Releases page](https://github.com/EbxdMalix/IDSWA-plugins/releases), then dashboard → Plugins → Install → upload.
 
 **Option B — CLI.**
 
@@ -114,7 +114,7 @@ curl -X POST "$OPENWA/api/plugins/chatwoot-adapter/enable" \
 | `relayGroups` | boolean | no (default `true`) | Relay group chats (one synthetic contact per group, sender-prefixed). |
 | `relayMedia` | boolean | no (default `true`) | Upload inbound media to Chatwoot as attachments. |
 | `relayOwnMessages` | boolean | no (default `true`) | Mirror messages you send from your own phone into Chatwoot, so an agent sees both sides of the conversation. Turn it off to relay only what contacts send you. |
-| `backfillLimit` | number | no (default `0`) | When a chat first opens in Chatwoot, import this many recent messages (both directions) so agents see prior context. Attachments are imported only at 25 or below — above that the import would exceed the host's 30-second budget and fail, so older media arrives as a placeholder line instead. `0` disables it; clamped to 100 host-side. Needs OpenWA 0.8.6+ and the whatsapp-web.js engine (Baileys has no history support). |
+| `backfillLimit` | number | no (default `0`) | When a chat first opens in Chatwoot, import this many recent messages (both directions) so agents see prior context. Attachments are imported only at 25 or below — above that the import would exceed the host's 30-second budget and fail, so older media arrives as a placeholder line instead. `0` disables it; clamped to 100 host-side. Needs IDSWA 0.8.6+ and the whatsapp-web.js engine (Baileys has no history support). |
 | `backfillAllOnce` | boolean | no (default `false`) | Also run a one-time sweep importing every existing chat's history on setup. Needs `backfillLimit` > 0. Runs once per session. |
 
 The Chatwoot webhook **secret** and the instance's **session scope** are set when you mint the instance (they
@@ -123,7 +123,7 @@ are not part of the config above).
 ## Self-hosted Chatwoot
 
 `baseUrl` must be a **public `https` URL** — `localhost`, a LAN IP, or a Docker-internal host such as
-`host.docker.internal` are rejected (OpenWA's SSRF guard blocks private addresses, and only the configured
+`host.docker.internal` are rejected (IDSWA's SSRF guard blocks private addresses, and only the configured
 public host is added to the outbound allowlist). To use a self-hosted Chatwoot:
 
 - Put it behind a public domain with TLS, or expose it through a tunnel (Cloudflare Tunnel, ngrok, …) and set
@@ -136,14 +136,14 @@ public host is added to the outbound allowlist). To use a self-hosted Chatwoot:
 ## Troubleshooting
 
 **Inbound works (WhatsApp messages reach Chatwoot), but agent replies never reach WhatsApp and the
-Chatwoot logs show `WebhookJob ... 401 Unauthorized`.** OpenWA rejected the webhook's HMAC signature.
+Chatwoot logs show `WebhookJob ... 401 Unauthorized`.** IDSWA rejected the webhook's HMAC signature.
 Work down this list:
 
 | Cause | Check | Fix |
 | --- | --- | --- |
 | The instance's ingress secret ≠ the Chatwoot webhook secret (by far the most common — every instance minted from the dashboard has an auto-generated secret that can't match Chatwoot's) | Compare the secret on the Chatwoot webhook edit form with the one the instance was minted with | Delete the instance and re-mint via the REST API with `secret` = the Chatwoot webhook secret (Setup step 3) |
 | The Chatwoot webhook was re-created (or its secret reset) after the instance was minted | Same as above | Re-mint the instance with the new secret |
-| Clock skew beyond the 300-second signature tolerance | Compare `date -u` on the Chatwoot and OpenWA hosts | Sync both hosts with NTP |
+| Clock skew beyond the 300-second signature tolerance | Compare `date -u` on the Chatwoot and IDSWA hosts | Sync both hosts with NTP |
 | Chatwoot older than v4.12.0 | Its account webhooks are unsigned | Upgrade Chatwoot |
 
 Inbound is unaffected by all of these because it authenticates to Chatwoot's REST API with the
@@ -152,18 +152,18 @@ instance id or route — so re-copy the ingress URL from the mint response.
 
 ## Compatibility
 
-- **OpenWA** ≥ 0.8.7 — needs Integration SDK v1 (webhook ingress, `ctx.mappings`, the session+chat handover
+- **IDSWA** ≥ 0.8.7 — needs Integration SDK v1 (webhook ingress, `ctx.mappings`, the session+chat handover
   gate, `net.allowConfigHosts`), the `conversation.send` media/voice types for outbound attachments, the
   sandbox-bridged `engine.getChatHistory` for the history backfill, and `engine.canonicalChatId` for `@lid`
   resolution.
-- **Agent replies containing a link look plainer from OpenWA 0.14.0 on the Baileys engine.** WhatsApp used
+- **Agent replies containing a link look plainer from IDSWA 0.14.0 on the Baileys engine.** WhatsApp used
   to draw a preview card for a URL in an agent's reply. From 0.14.0 Baileys only generates that card when
   the sender asks for it, and a plugin has no way to ask, so those replies arrive as plain links. Delivery
   is unaffected. The whatsapp-web.js engine is unaffected.
 - **`@lid` migration** — when a contact migrates to WhatsApp's `@lid` addressing, their conversation is kept
   from splitting as long as the lid→phone mapping is known (after any reply to them). To resolve it on
   every inbound too — closing the gap for a contact you've only ever received from — set
-  `RESOLVE_LID_TO_PHONE=true` in OpenWA.
+  `RESOLVE_LID_TO_PHONE=true` in IDSWA.
 
   Two residual cases remain, and both produce a second Chatwoot contact for the same person rather than
   any loss of messages: a contact whose very first message arrives under their privacy id while Chatwoot
@@ -193,10 +193,10 @@ store isolates them. The per-session `baseUrl` is auto-added to the outbound all
 
 ## Security
 
-- The outbound HTTP allowlist admits only your configured Chatwoot host; OpenWA's SSRF guard still blocks
+- The outbound HTTP allowlist admits only your configured Chatwoot host; IDSWA's SSRF guard still blocks
   private/link-local addresses at connect time.
 - The Chatwoot `apiToken` is stored as a secret and masked on dashboard reads.
-- Inbound webhooks are HMAC-verified by OpenWA before the adapter runs; private Chatwoot notes are never
+- Inbound webhooks are HMAC-verified by IDSWA before the adapter runs; private Chatwoot notes are never
   relayed to WhatsApp.
 
 ## Changelog

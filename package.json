@@ -1,9 +1,9 @@
 {
-  "name": "openwa-plugins",
+  "name": "idswa-plugins",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Official & community plugins for OpenWA.",
+  "description": "Official & community plugins for IDSWA.",
   "license": "MIT",
   "engines": { "node": ">=22" },
   "scripts": {

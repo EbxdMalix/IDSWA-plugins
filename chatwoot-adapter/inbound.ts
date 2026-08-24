@@ -1,4 +1,4 @@
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 import { shouldRelayInbound } from './filters.ts';
 import { relayMessage, ensureConversation, refreshContactName, resolvePhone, type InboundDeps } from './relay.ts';
 import { backfillHistory } from './backfill.ts';

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { PluginContext, WebhookRequest } from '../types/openwa';
+import type { PluginContext, WebhookRequest } from '../types/idswa';
 import SupabaseSmsHook from './index.ts';
 
 const TS = 1_700_000_000;

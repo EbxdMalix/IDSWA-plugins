@@ -1,7 +1,7 @@
 /**
  * Group auto-translation extension plugin.
  *
- * Ports OpenWA's core `translation` module onto the v0.7 plugin capability surface: the
+ * Ports IDSWA's core `translation` module onto the v0.7 plugin capability surface: the
  * framework-agnostic `core/` (coordinator, parser, formatter, ports) is reused unchanged, with
  * `ChatGateway`/`ConfigStore` implemented over `ctx.messages`/`ctx.engine`/`ctx.storage`, and outbound
  * translate calls routed through `ctx.net.fetch`. Disabled until enabled via
@@ -13,7 +13,7 @@ import type {
   HookContext,
   HookResult,
   IncomingMessage,
-} from "../types/openwa";
+} from "../types/idswa";
 import {
   TranslationCoordinator,
   CoordinatorOptions,

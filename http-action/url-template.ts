@@ -1,4 +1,4 @@
-// Prototype-safe dot-path templating for HTTP Action Bot. Pure (no ctx) → tests without OpenWA.
+// Prototype-safe dot-path templating for HTTP Action Bot. Pure (no ctx) → tests without IDSWA.
 //
 // Security: WhatsApp message text is attacker-controlled and flows into `args.*` (and from there into
 // request paths, query, and POST bodies). Three invariants this module enforces:

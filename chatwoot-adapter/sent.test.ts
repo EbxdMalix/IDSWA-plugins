@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { handleSent } from './sent.ts';
 import type { InboundDeps } from './relay.ts';
 import { KeyedAsyncLock } from './chat-lock.ts';
-import type { IncomingMessage } from '../types/openwa';
+import type { IncomingMessage } from '../types/idswa';
 
-// A fromMe send composed on a linked phone / the OpenWA API (chatId = the recipient).
+// A fromMe send composed on a linked phone / the IDSWA API (chatId = the recipient).
 const own = {
   id: 'o1', from: 'me@c.us', to: '621@c.us', chatId: '621@c.us', body: 'from my phone', type: 'chat',
   timestamp: 0, fromMe: true, isGroup: false,
